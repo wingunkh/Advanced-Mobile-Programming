@@ -3,6 +3,8 @@ package com.example.go
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
+// test
+
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
