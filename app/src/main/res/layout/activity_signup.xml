@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#3F51B5" >
+
+    <TextView
+        android:id="@+id/text_signup2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign Up"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="500sp"
+        android:background="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/edit_email2"
+        android:layout_width="325sp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="@+id/edit_nickname"
+        app:layout_constraintStart_toStartOf="@+id/edit_nickname"
+        app:layout_constraintTop_toBottomOf="@+id/edit_nickname" />
+
+    <EditText
+        android:id="@+id/edit_nickname"
+        android:layout_width="325sp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/view" />
+
+    <EditText
+        android:id="@+id/edit_password2"
+        android:layout_width="325sp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:ems="10"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="@+id/edit_email2"
+        app:layout_constraintStart_toStartOf="@+id/edit_email2"
+        app:layout_constraintTop_toBottomOf="@+id/edit_email2" />
+
+    <EditText
+        android:id="@+id/edit_confirm"
+        android:layout_width="325sp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:ems="10"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="@+id/edit_password2"
+        app:layout_constraintStart_toStartOf="@+id/edit_password2"
+        app:layout_constraintTop_toBottomOf="@+id/edit_password2" />
+
+    <TextView
+        android:id="@+id/text_email2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Email"
+        app:layout_constraintBottom_toTopOf="@+id/edit_email2"
+        app:layout_constraintStart_toStartOf="@+id/edit_nickname"
+        app:layout_constraintTop_toTopOf="@+id/edit_email2" />
+
+    <TextView
+        android:id="@+id/text_nickname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nickname"
+        app:layout_constraintBottom_toTopOf="@+id/edit_nickname"
+        app:layout_constraintStart_toStartOf="@+id/edit_nickname"
+        app:layout_constraintTop_toTopOf="@+id/edit_nickname" />
+
+    <TextView
+        android:id="@+id/text_password2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Password"
+        app:layout_constraintBottom_toTopOf="@+id/edit_password2"
+        app:layout_constraintStart_toStartOf="@+id/edit_password2"
+        app:layout_constraintTop_toTopOf="@+id/edit_password2" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="325sp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Sign-In"
+        app:layout_constraintEnd_toEndOf="@+id/edit_password2"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/edit_password2"
+        app:layout_constraintTop_toBottomOf="@+id/edit_confirm" />
+
+    <TextView
+        android:id="@+id/text_confirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Confirm Password"
+        app:layout_constraintBottom_toTopOf="@+id/edit_confirm"
+        app:layout_constraintStart_toStartOf="@+id/edit_confirm"
+        app:layout_constraintTop_toTopOf="@+id/edit_confirm" />
+
+    <TextView
+        android:id="@+id/text_signin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:text="Already have an account? Sign In"
+        app:layout_constraintBottom_toBottomOf="@+id/view"
+        app:layout_constraintEnd_toEndOf="@+id/button2"
+        app:layout_constraintStart_toStartOf="@+id/button2" />
+</androidx.constraintlayout.widget.ConstraintLayout>
