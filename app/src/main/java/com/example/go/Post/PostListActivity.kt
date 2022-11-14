@@ -8,7 +8,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.go.ImagePost.ImageListActivity
-import com.example.go.databinding.ActivityMainBinding
+import com.example.go.databinding.ActivityPostListBinding
 
 // test
 
@@ -23,10 +23,10 @@ class PostListActivity : AppCompatActivity() {
         Post("hi7", "geonhee", "hello"),
         Post("hi8", "geonhee", "hello")
     )
-    private lateinit var binding : ActivityMainBinding
+    private lateinit var binding : ActivityPostListBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityPostListBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         initViews()
