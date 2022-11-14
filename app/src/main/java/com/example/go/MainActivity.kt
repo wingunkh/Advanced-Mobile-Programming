@@ -25,6 +25,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         initViews()
+        binding.imageListButton.setOnClickListener {
+            val intent = Intent(this, ImageListActivity::class.java)
+            startActivity(intent)
+        }
     }
     private fun initViews() {
         binding.postList.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)

@@ -28,6 +28,12 @@
         <activity
             android:name=".PostActivity"
             android:exported="true"/>
+        <activity
+            android:name = ".ImageListActivity"
+            android:exported="true"/>
+        <activity
+            android:name = ".ImagePostActivity"
+            android:exported="true"/>
     </application>
 
 </manifest>
