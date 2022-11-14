@@ -17,6 +17,15 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/postUserText"
+        android:layout_width="215dp"
+        android:layout_height="42dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/postContentText"
+        app:layout_constraintStart_toStartOf="@+id/postTitleText"
+        app:layout_constraintTop_toBottomOf="@+id/postTitleText" />
+
+    <TextView
         android:id="@+id/postContentText"
         android:layout_width="359dp"
         android:layout_height="505dp"
@@ -25,12 +34,4 @@
         app:layout_constraintStart_toStartOf="@+id/postTitleText"
         app:layout_constraintTop_toBottomOf="@+id/postTitleText" />
 
-    <TextView
-        android:id="@+id/postUserText"
-        android:layout_width="215dp"
-        android:layout_height="42dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/postContentText"
-        app:layout_constraintStart_toStartOf="@+id/postTitleText"
-        app:layout_constraintTop_toBottomOf="@+id/postTitleText" />
 </androidx.constraintlayout.widget.ConstraintLayout>

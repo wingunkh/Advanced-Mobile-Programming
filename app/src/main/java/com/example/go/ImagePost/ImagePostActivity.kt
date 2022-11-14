@@ -1,9 +1,10 @@
-package com.example.go
+package com.example.go.ImagePost
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.go.databinding.ActivityImagePostBinding
 
+@Suppress("DEPRECATION")
 class ImagePostActivity : AppCompatActivity(){
     private lateinit var binding : ActivityImagePostBinding
     override fun onCreate(savedInstanceState: Bundle?) {

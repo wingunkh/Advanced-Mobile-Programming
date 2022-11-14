@@ -1,11 +1,10 @@
-package com.example.go
+package com.example.go.ImagePost
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.go.databinding.ItemImagePostBinding
-import java.lang.Integer.parseInt
 
 class ImagePostAdapter(private val posts: List<ImagePost>) : RecyclerView.Adapter<ImagePostAdapter.ImagePostViewHolder>() {
     interface ItemClick {
