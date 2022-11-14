@@ -1,4 +1,4 @@
-package com.example.go
+package com.example.go.Post
 
 import java.io.Serializable
 

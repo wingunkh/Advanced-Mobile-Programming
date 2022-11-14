@@ -1,8 +1,7 @@
-package com.example.go
+package com.example.go.Post
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.go.databinding.ActivityMainBinding
 import com.example.go.databinding.ActivityPostBinding
 
 class PostActivity : AppCompatActivity(){

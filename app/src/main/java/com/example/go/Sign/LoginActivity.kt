@@ -1,4 +1,4 @@
-package com.example.go
+package com.example.go.Sign
 
 import android.content.Intent
 import android.os.Bundle
@@ -12,7 +12,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.textSignup.setOnClickListener{
-            val intent= Intent(this,SignUpActivity::class.java)
+            val intent= Intent(this, SignUpActivity::class.java)
             startActivity(intent)
         }
     }

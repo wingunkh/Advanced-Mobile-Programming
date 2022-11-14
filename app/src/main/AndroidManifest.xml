@@ -26,13 +26,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".PostActivity"
-            android:exported="true"/>
-        <activity
-            android:name = ".ImageListActivity"
-            android:exported="true"/>
-        <activity
-            android:name = ".ImagePostActivity"
+            android:name=".Post.PostActivity"
             android:exported="true"/>
     </application>
 

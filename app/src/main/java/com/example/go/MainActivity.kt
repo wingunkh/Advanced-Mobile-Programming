@@ -7,7 +7,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.go.Post.Post
+import com.example.go.Post.PostActivity
+import com.example.go.Post.PostAdapter
 import com.example.go.databinding.ActivityMainBinding
+
+// test
 
 class MainActivity : AppCompatActivity() {
     private val posts = listOf(
