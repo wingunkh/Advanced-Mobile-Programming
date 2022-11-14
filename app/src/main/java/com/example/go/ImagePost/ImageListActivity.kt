@@ -1,10 +1,11 @@
-package com.example.go
+package com.example.go.ImagePost
 
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.go.*
 import com.example.go.databinding.ActivityImageListBinding
 
 class ImageListActivity : AppCompatActivity(){
