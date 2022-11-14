@@ -13,7 +13,7 @@
         android:theme="@style/Theme.Go"
         tools:targetApi="31">
         <activity
-            android:name=".LoginActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,8 +25,15 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <activity android:name=".SignUpActivity" />
-        <activity android:name=".MainActivity" />
+        <activity
+            android:name=".PostActivity"
+            android:exported="true"/>
+        <activity
+            android:name = ".ImageListActivity"
+            android:exported="true"/>
+        <activity
+            android:name = ".ImagePostActivity"
+            android:exported="true"/>
     </application>
 
 </manifest>
