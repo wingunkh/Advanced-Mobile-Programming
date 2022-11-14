@@ -11,6 +11,7 @@ class ImagePostAdapter(private val posts: List<ImagePost>) : RecyclerView.Adapte
         fun onClick(view: View, position:Int)
     }
     var itemClick: ItemClick? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImagePostViewHolder {
         val binding = ItemImagePostBinding.inflate(
             LayoutInflater.from(parent.context),
