@@ -1,9 +1,8 @@
-package com.example.go
+package com.example.go.Sign
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.go.databinding.ActivityLoginBinding
 import com.example.go.databinding.ActivitySignupBinding
 
 class SignUpActivity : AppCompatActivity() {
@@ -13,7 +12,7 @@ class SignUpActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.textSignin.setOnClickListener{
-            val intent= Intent(this,LoginActivity::class.java)
+            val intent= Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
     }
