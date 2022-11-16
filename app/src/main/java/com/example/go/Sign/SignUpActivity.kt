@@ -8,10 +8,10 @@ import com.example.go.databinding.ActivitySignupBinding
 class SignUpActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding=ActivitySignupBinding.inflate(layoutInflater)
+        val binding = ActivitySignupBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.textSignin.setOnClickListener{
+        binding.textButtonSignIn.setOnClickListener{
             val intent= Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }

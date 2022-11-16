@@ -26,6 +26,9 @@
                 android:value="" />
         </activity>
         <activity
+            android:name=".Sign.SignUpActivity"
+            android:exported="true"/>
+        <activity
             android:name=".Post.PostListActivity"
             android:exported="true"/>
         <activity
