@@ -25,7 +25,7 @@ class SignUpActivity : AppCompatActivity() {
             val password = binding.signupPassword.text.toString()
             val confirm = binding.signupConfirmPassword.text.toString()
 
-            //if(comparePassword(password, confirm))
+            if(comparePassword(password, confirm))
             doSignUp(userEmail, password)
         }
     }
@@ -44,5 +44,14 @@ class SignUpActivity : AppCompatActivity() {
                     Toast.makeText(this, "SignUp failed.", Toast.LENGTH_SHORT).show()
                 }
             }
+    }
+
+    private fun comparePassword(password: String, confirm: String): Boolean {
+        return if (password == confirm)
+            true
+        else {
+            Toast.makeText(this, "Please check the password again!.", Toast.LENGTH_SHORT).show()
+            false
+        }
     }
 }
