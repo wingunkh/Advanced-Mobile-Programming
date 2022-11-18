@@ -26,7 +26,7 @@ class SignUpActivity : AppCompatActivity() {
             val confirm = binding.signupConfirmPassword.text.toString()
 
             if(comparePassword(password, confirm))
-            doSignUp(userEmail, password)
+                doSignUp(userEmail, password)
         }
     }
 
