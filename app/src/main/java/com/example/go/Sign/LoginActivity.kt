@@ -33,9 +33,21 @@ class LoginActivity : AppCompatActivity() {
             .addOnCompleteListener(this) {
                 if (it.isSuccessful) { //로그인 성공 시
                     startActivity(
-                        Intent(this, PostListActivity::class.java)) //메인 액티비티 시작
+                        Intent(this, PostListActivity::class.java)) //게시글 리스트 액티비티 시작
                     finish()
                 } else { //로그인 실패 시
+                    Log.w("LoginActivity", "signInWithEmail", it.exception)
+                    Toast.makeText(this, "Authentication failed.", Toast.LENGTH_SHORT).show()
+                }
+            }
+    }
+
+    private fun doSignUp(userEmail: String, password: String){
+        Firebase.auth.createUserWithEmailAndPassword(userEmail, password)
+            .addOnCompleteListener(this){
+                if(it.isSuccessful) {
+
+                } else {
                     Log.w("LoginActivity", "signInWithEmail", it.exception)
                     Toast.makeText(this, "Authentication failed.", Toast.LENGTH_SHORT).show()
                 }
