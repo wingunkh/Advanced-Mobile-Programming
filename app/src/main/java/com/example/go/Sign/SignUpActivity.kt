@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.go.Post.PostListActivity
 import com.example.go.databinding.ActivitySignupBinding
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase

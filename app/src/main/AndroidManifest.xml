@@ -27,19 +27,22 @@
         </activity>
         <activity
             android:name=".Sign.SignUpActivity"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".Post.PostListActivity"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".Post.PostActivity"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
-            android:name = ".ImagePost.ImageListActivity"
-            android:exported="true"/>
+            android:name=".ImagePost.ImageListActivity"
+            android:exported="true" />
         <activity
-            android:name = ".ImagePost.ImagePostActivity"
-            android:exported="true"/>
+            android:name=".ImagePost.ImagePostActivity"
+            android:exported="true" />
+        <activity
+            android:name=".Profile.ProfileActivity"
+            android:exported="true" />
     </application>
 
 </manifest>

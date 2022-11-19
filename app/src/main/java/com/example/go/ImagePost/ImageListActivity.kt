@@ -6,7 +6,6 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.go.*
-import com.example.go.Post.PostListActivity
 import com.example.go.databinding.ActivityImageListBinding
 
 class ImageListActivity : AppCompatActivity(){
@@ -27,10 +26,6 @@ class ImageListActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         binding = ActivityImageListBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.postListButton.setOnClickListener {
-            val intent = Intent(this, PostListActivity::class.java)
-            startActivity(intent)
-        }
         initViews()
     }
 

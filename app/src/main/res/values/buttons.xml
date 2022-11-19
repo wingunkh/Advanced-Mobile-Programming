@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- we need two arrays, one for the icons and one for the colors of the icons-->
+    <!-- icons array-->
+    <array name="icons">
+        <item>@drawable/solo</item>
+        <item>@drawable/jungle</item>
+        <item>@drawable/mid</item>
+        <item>@drawable/duo</item>
+        <item>@drawable/support</item>
+    </array>
+    <!-- icons colors-->
+    <array name="colors">
+        <item>@android:color/holo_blue_light</item>
+        <item>@android:color/holo_green_dark</item>
+        <item>@android:color/holo_red_light</item>
+        <item>@android:color/holo_purple</item>
+        <item>@android:color/holo_orange_light</item>
+    </array>
+</resources>

@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.go.ImagePost.ImageListActivity
 import com.example.go.databinding.ActivityPostListBinding
 
 // test
@@ -30,10 +29,6 @@ class PostListActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         initViews()
-        binding.imageListButton.setOnClickListener {
-            val intent = Intent(this, ImageListActivity::class.java)
-            startActivity(intent)
-        }
     }
     private fun initViews() {
         binding.postList.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
