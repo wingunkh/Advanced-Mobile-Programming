@@ -12,9 +12,9 @@ class PostActivity : AppCompatActivity(){
         binding = ActivityPostBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val post = intent.getSerializableExtra("post") as Post
-        binding.postTitleText.text = post.title
-        binding.postUserText.text = post.user
-        binding.postContentText.text = post.content
+        val post = intent.getParcelableExtra<Post>("post")
+        binding.postTitleText.text = post?.title
+        binding.postUserText.text = post?.user
+        binding.postContentText.text = post?.content
     }
 }

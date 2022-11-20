@@ -43,6 +43,9 @@
         <activity
             android:name=".Profile.ProfileActivity"
             android:exported="true" />
+        <activity
+            android:name=".Post.PostWritingActivity"
+            android:exported="true" />
     </application>
 
 </manifest>
