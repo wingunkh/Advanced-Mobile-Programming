@@ -25,7 +25,7 @@ class SignUpActivity : AppCompatActivity() {
             val password = binding.signupPassword.text.toString()
             val confirm = binding.signupConfirmPassword.text.toString()
 
-            if (userEmail.isNullOrEmpty() || password.isNullOrEmpty() || confirm.isNullOrEmpty())
+            if (userEmail.isEmpty() || password.isEmpty() || confirm.isEmpty())
                 Toast.makeText(this, "빈칸이 있습니다.", Toast.LENGTH_SHORT).show()
 
             else if(comparePassword(password, confirm))
@@ -38,10 +38,13 @@ class SignUpActivity : AppCompatActivity() {
             .addOnCompleteListener(this) {
                 if (it.isSuccessful) {
                     val uid = it.result.user?.uid
+                    FBRef.userRef
+                        .child(uid!!).setValue(UserModel(uid,userEmail,password,nickname))
                     Toast.makeText(this, "SignUp Success!.", Toast.LENGTH_SHORT).show()
-                    startActivity(
-                        Intent(this, LoginActivity::class.java)
-                    ) //로그인 액티비티로 되돌아간다.
+                    val intent = Intent(this, LoginActivity::class.java)
+                    intent.flags =
+                        Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP //회원가입하면 뒤에있는 액티비티 없애기
+                    startActivity(intent)
                     finish()
                 } else {
                     Log.w("SignUpActivity", "signUpWithEmail", it.exception)
