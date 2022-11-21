@@ -5,9 +5,9 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.go.Utils.FBAuth
+import com.example.go.Utils.FBRef
 import com.example.go.databinding.ActivitySignupBinding
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 
 class SignUpActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,19 +20,24 @@ class SignUpActivity : AppCompatActivity() {
         }
 
         binding.buttonSignUp.setOnClickListener {
+            val nickname = binding.signupNickname.text.toString()
             val userEmail = binding.signupEmail.text.toString()
             val password = binding.signupPassword.text.toString()
             val confirm = binding.signupConfirmPassword.text.toString()
 
-            if(comparePassword(password, confirm))
-                doSignUp(userEmail, password)
+            if (userEmail.isNullOrEmpty() || password.isNullOrEmpty() || confirm.isNullOrEmpty())
+                Toast.makeText(this, "빈칸이 있습니다.", Toast.LENGTH_SHORT).show()
+
+            else if(comparePassword(password, confirm))
+                doSignUp(nickname, userEmail, password)
         }
     }
 
-    private fun doSignUp(userEmail: String, password: String) {
-        Firebase.auth.createUserWithEmailAndPassword(userEmail, password)
+    private fun doSignUp(nickname: String, userEmail: String, password: String) {
+        FBAuth.auth.createUserWithEmailAndPassword(userEmail, password)
             .addOnCompleteListener(this) {
                 if (it.isSuccessful) {
+                    val uid = it.result.user?.uid
                     Toast.makeText(this, "SignUp Success!.", Toast.LENGTH_SHORT).show()
                     startActivity(
                         Intent(this, LoginActivity::class.java)

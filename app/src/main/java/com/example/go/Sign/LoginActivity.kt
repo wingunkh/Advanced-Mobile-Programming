@@ -24,7 +24,10 @@ class LoginActivity : AppCompatActivity() {
         binding.buttonSignIn.setOnClickListener{
             val userEmail = binding.loginEmail.text.toString()
             val password = binding.loginPassword.text.toString()
-            doLogin(userEmail, password) //로그인 시도
+
+            if (userEmail.isNullOrEmpty() || password.isNullOrEmpty())
+                Toast.makeText(this, "빈칸이 있습니다.", Toast.LENGTH_SHORT).show()
+            else doLogin(userEmail, password) //로그인 시도
         }
     }
 

@@ -1,4 +1,4 @@
-package com.example.dangdangee.Utils
+package com.example.go.Utils
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
