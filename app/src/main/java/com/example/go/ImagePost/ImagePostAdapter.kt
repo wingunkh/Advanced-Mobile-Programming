@@ -30,7 +30,8 @@ class ImagePostAdapter(private val posts: List<ImagePost>) : RecyclerView.Adapte
 
     class ImagePostViewHolder(val binding: ItemImagePostBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(imagePost: ImagePost) {
-            binding.postUserText.text = imagePost.user
+            binding.itemImagePostUsername1.text = imagePost.user
+            binding.itemImagePostUsername2.text = imagePost.user
             binding.postImageView.setImageResource(imagePost.imgSrc)
         }
     }

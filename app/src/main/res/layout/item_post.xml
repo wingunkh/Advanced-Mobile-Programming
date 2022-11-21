@@ -9,7 +9,7 @@
     android:background="@drawable/rounded_white_post">
 
     <TextView
-        android:id="@+id/postTitleText"
+        android:id="@+id/itemPostTitleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -23,7 +23,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/postUserText"
+        android:id="@+id/itemPostUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -32,5 +32,5 @@
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/postTitleText" />
+        app:layout_constraintTop_toBottomOf="@+id/itemPostTitleText" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/postTitleText"
+        android:id="@+id/writePostTitleText"
         android:layout_width="365dp"
         android:layout_height="45dp"
         android:layout_marginTop="15dp"
@@ -17,21 +17,21 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/postUserText"
+        android:id="@+id/writePostUsername"
         android:layout_width="215dp"
         android:layout_height="42dp"
+        android:layout_marginTop="32dp"
         android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/postContentText"
-        app:layout_constraintStart_toStartOf="@+id/postTitleText"
-        app:layout_constraintTop_toBottomOf="@+id/postTitleText" />
+        app:layout_constraintStart_toStartOf="@+id/writePostTitleText"
+        app:layout_constraintTop_toBottomOf="@+id/writePostTitleText" />
 
     <TextView
-        android:id="@+id/postContentText"
+        android:id="@+id/writePostContentText"
         android:layout_width="359dp"
         android:layout_height="505dp"
         android:layout_marginTop="100dp"
         android:text="TextView"
-        app:layout_constraintStart_toStartOf="@+id/postTitleText"
-        app:layout_constraintTop_toBottomOf="@+id/postTitleText" />
+        app:layout_constraintStart_toStartOf="@+id/writePostTitleText"
+        app:layout_constraintTop_toBottomOf="@+id/writePostTitleText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

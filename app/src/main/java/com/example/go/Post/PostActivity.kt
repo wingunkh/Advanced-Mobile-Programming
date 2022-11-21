@@ -13,8 +13,8 @@ class PostActivity : AppCompatActivity(){
         setContentView(binding.root)
 
         val post = intent.getSerializableExtra("post") as Post
-        binding.postTitleText.text = post.title
-        binding.postUserText.text = post.user
-        binding.postContentText.text = post.content
+        binding.writePostTitleText.text = post.title
+        binding.writePostUsername.text = post.user
+        binding.writePostContentText.text = post.content
     }
 }

@@ -29,8 +29,8 @@ class PostAdapter(private val posts: List<Post>) : RecyclerView.Adapter<PostAdap
 
     class PostViewHolder(val binding: ItemPostBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(post: Post) {
-            binding.postTitleText.text = post.title
-            binding.postUserText.text = post.user
+            binding.itemPostTitleText.text = post.title
+            binding.itemPostUsername.text = post.user
         }
     }
 }
