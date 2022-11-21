@@ -20,7 +20,7 @@ class PostAdapter(private val posts: List<Post>) : RecyclerView.Adapter<PostAdap
     }
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
         holder.bind(posts[position])
-        holder.binding.postTitleText.setOnClickListener {
+        holder.binding.itemPostView.setOnClickListener {
             itemClick?.onClick(it, position)
         }
     }

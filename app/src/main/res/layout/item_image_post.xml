@@ -2,31 +2,39 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item_image_post_view"
     android:layout_width="match_parent"
-    android:layout_height="300dp">
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="30dp"
+    android:background="@drawable/rounded_white_post">
 
     <TextView
         android:id="@+id/postUserText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
         android:text="user"
-        app:layout_constraintBottom_toTopOf="@+id/postImageView"
-        app:layout_constraintEnd_toStartOf="@+id/postImageView" />
+        android:textColor="#FFFFFF"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/postImageView"
-        android:layout_width="271dp"
-        android:layout_height="193dp"
+        android:layout_width="350dp"
+        android:layout_height="265dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/rounded_white_post"
+        android:clipToOutline="true"
+        android:contentDescription="image"
+        android:scaleType="centerCrop"
         android:src="@drawable/cake"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.635"
-        tools:ignore="ImageContrastCheck,ImageContrastCheck"
-        tools:srcCompat="@tools:sample/avatars"
-        android:contentDescription="image" />
+        app:layout_constraintTop_toBottomOf="@+id/postUserText"
+        tools:ignore="ImageContrastCheck,ImageContrastCheck" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

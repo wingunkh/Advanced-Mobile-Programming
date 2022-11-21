@@ -21,7 +21,7 @@ class ImagePostAdapter(private val posts: List<ImagePost>) : RecyclerView.Adapte
     }
     override fun onBindViewHolder(holder: ImagePostViewHolder, position: Int) {
         holder.bind(posts[position])
-        holder.binding.postImageView.setOnClickListener {
+        holder.binding.itemImagePostView.setOnClickListener {
             itemClick?.onClick(it, position)
         }
     }
