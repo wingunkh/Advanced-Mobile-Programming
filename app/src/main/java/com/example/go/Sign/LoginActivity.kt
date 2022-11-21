@@ -25,7 +25,7 @@ class LoginActivity : AppCompatActivity() {
             val userEmail = binding.loginEmail.text.toString()
             val password = binding.loginPassword.text.toString()
 
-            if (userEmail.isNullOrEmpty() || password.isNullOrEmpty())
+            if (userEmail.isEmpty() || password.isEmpty())
                 Toast.makeText(this, "빈칸이 있습니다.", Toast.LENGTH_SHORT).show()
             else doLogin(userEmail, password) //로그인 시도
         }
