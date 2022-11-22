@@ -1,4 +1,4 @@
-package com.example.dangdangee.Utils
+package com.example.go.Utils
 
 import android.content.ContentValues.TAG
 import android.util.Log

@@ -5,8 +5,8 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.go.Utils.FBAuth
 import com.example.go.Utils.FBRef
+import com.example.go.Utils.FBAuth
 import com.example.go.databinding.ActivitySignupBinding
 import com.example.go.Model.UserModel
 
