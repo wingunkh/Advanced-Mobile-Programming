@@ -1,38 +1,38 @@
 package com.example.go.ImagePost
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.go.PostViewModel
 import com.example.go.databinding.ItemImagePostBinding
+import com.example.go.Model.ImagePost
 
-class ImagePostAdapter(private val posts: List<ImagePost>) : RecyclerView.Adapter<ImagePostAdapter.ImagePostViewHolder>() {
-    interface ItemClick {
-        fun onClick(view: View, position:Int)
-    }
-    var itemClick: ItemClick? = null
+class ImagePostAdapter(private val viewModel: PostViewModel, private val itemClicked: (position: Int) -> Unit) : RecyclerView.Adapter<ImagePostAdapter.ImagePostViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImagePostViewHolder {
-        val binding = ItemImagePostBinding.inflate(
-            LayoutInflater.from(parent.context),
-            parent, false
-        )
+        val binding = ItemImagePostBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ImagePostViewHolder(binding)
     }
-    override fun onBindViewHolder(holder: ImagePostViewHolder, position: Int) {
-        holder.bind(posts[position])
-        holder.binding.itemImagePostView.setOnClickListener {
-            itemClick?.onClick(it, position)
-        }
-    }
 
-    override fun getItemCount() : Int = posts.size
-
-    class ImagePostViewHolder(val binding: ItemImagePostBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ImagePostViewHolder(val binding: ItemImagePostBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(imagePost: ImagePost) {
-            binding.itemImagePostUsername1.text = imagePost.user
-            binding.itemImagePostUsername2.text = imagePost.user
-            binding.postImageView.setImageResource(imagePost.imgSrc)
+            binding.apply {
+                itemImagePostUsername1.text = imagePost.user
+                itemImagePostUsername2.text = imagePost.user
+                postImageView.setImageResource(imagePost.imgSrc)
+
+                itemImagePostView.setOnClickListener {
+                    itemClicked(adapterPosition)
+                }
+            }
         }
     }
+
+    override fun onBindViewHolder(holder: ImagePostViewHolder, position: Int) {
+        holder.bind(viewModel.imagePostLiveData.value!![position])
+    }
+
+    override fun getItemCount() : Int = viewModel.imagePostLiveData.value?.size ?: 0
+
+
 }

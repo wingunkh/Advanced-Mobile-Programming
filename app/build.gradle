@@ -43,7 +43,6 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'com.google.android.material:material:1.7.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'com.google.firebase:firebase-database:20.1.0'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
@@ -61,4 +60,10 @@ dependencies {
     implementation 'com.google.firebase:firebase-messaging-ktx'
     /*파이어베이스 관련 implementation (강의 자료 참고)*/
 
-    implementation 'com.ramotion.circlemenu:circle-menu:0.3.2'}
+    implementation 'com.ramotion.circlemenu:circle-menu:0.3.2'
+
+    implementation "androidx.activity:activity-ktx:1.5.1"
+    implementation "androidx.fragment:fragment-ktx:1.5.2"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.5.1"
+}

@@ -2,8 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -14,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Go"
         tools:targetApi="31">
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
         <activity
             android:name=".Sign.LoginActivity"
             android:exported="true">
@@ -31,22 +32,22 @@
             android:name=".Sign.SignUpActivity"
             android:exported="true" />
         <activity
-            android:name=".Post.PostListActivity"
+            android:name=".Post.PostListFragment"
             android:exported="true" />
         <activity
-            android:name=".Post.PostActivity"
+            android:name=".Post.PostFragment"
             android:exported="true" />
         <activity
-            android:name=".ImagePost.ImageListActivity"
+            android:name=".ImagePost.ImagePostListFragment"
             android:exported="true" />
         <activity
-            android:name=".ImagePost.ImagePostActivity"
+            android:name=".ImagePost.ImagePostFragment"
             android:exported="true" />
         <activity
-            android:name=".Profile.ProfileActivity"
+            android:name=".Profile.ProfileFragment"
             android:exported="true" />
         <activity
-            android:name=".Post.PostWritingActivity"
+            android:name=".Post.PostWriteFragment"
             android:exported="true" />
     </application>
 

@@ -1,36 +1,38 @@
 package com.example.go.Post
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.go.PostViewModel
 import com.example.go.databinding.ItemPostBinding
+import com.example.go.Model.TextPost
 
-class PostAdapter(private val posts: List<Post>) : RecyclerView.Adapter<PostAdapter.PostViewHolder>() {
-    interface ItemClick {
-        fun onClick(view: View, position:Int)
-    }
-    var itemClick: ItemClick? = null
+class PostAdapter(private val viewModel: PostViewModel, private val itemClicked: (position: Int) -> Unit) : RecyclerView.Adapter<PostAdapter.PostViewHolder>() {
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
-        val binding = ItemPostBinding.inflate(
-            LayoutInflater.from(parent.context),
-            parent, false
-        )
+        val binding = ItemPostBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return PostViewHolder(binding)
     }
+
+    inner class PostViewHolder(val binding: ItemPostBinding) : RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(post: TextPost) {
+            binding.apply {
+                itemPostTitleText.text = post.title
+                itemPostUsername.text = post.user
+
+                itemPostView.setOnClickListener {
+                    itemClicked(adapterPosition)
+                }
+            }
+        }
+    }
+
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
-        holder.bind(posts[position])
-        holder.binding.itemPostView.setOnClickListener {
-            itemClick?.onClick(it, position)
-        }
+        holder.bind(viewModel.textPostLiveData.value!![position])
     }
 
-    override fun getItemCount() : Int = posts.size
+    override fun getItemCount() : Int = viewModel.textPostLiveData.value?.size ?: 0
 
-    class PostViewHolder(val binding: ItemPostBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(post: Post) {
-            binding.itemPostTitleText.text = post.title
-            binding.itemPostUsername.text = post.user
-        }
-    }
+
 }
