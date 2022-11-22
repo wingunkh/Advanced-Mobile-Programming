@@ -39,7 +39,7 @@ class PostWriteFragment : Fragment() {
         binding.postWritingPostButton.setOnClickListener {
             val postTitle = binding.postWritingTitle.text.toString()
             val postContent = binding.postWritingContent.text.toString()
-            val postUser = user?.uid.toString()
+            val postUser = user?.displayName.toString()
 
             viewModel.createTextPostItem(TextPost(postTitle, postUser, postContent))
             (activity as MainActivity).removeFragment(this@PostWriteFragment)

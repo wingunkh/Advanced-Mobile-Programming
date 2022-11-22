@@ -60,7 +60,7 @@ class ProfileFragment : Fragment() {
                     2 -> (activity as MainActivity).changeFragmentWithBackStack(ImagePostListFragment.newInstance())
                     3 -> (activity as MainActivity).changeFragmentWithBackStack(PostListFragment.newInstance())
                     // 이게 굳이?
-                    4 -> (activity as MainActivity).changeFragmentWithBackStack(ProfileFragment.newInstance())
+                    4 -> (activity as MainActivity).changeFragmentWithBackStack(newInstance())
                 }
             }
 
@@ -90,7 +90,7 @@ class ProfileFragment : Fragment() {
                     2 -> (activity as MainActivity).changeFragmentWithBackStack(ImagePostListFragment.newInstance())
                     3 -> (activity as MainActivity).changeFragmentWithBackStack(PostListFragment.newInstance())
                     // 이게 굳이?
-                    4 -> (activity as MainActivity).changeFragmentWithBackStack(ProfileFragment.newInstance())
+                    4 -> (activity as MainActivity).changeFragmentWithBackStack(newInstance())
                 }
             }
         }

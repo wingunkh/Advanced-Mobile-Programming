@@ -49,9 +49,6 @@
         <activity
             android:name=".Post.PostWriteFragment"
             android:exported="true" />
-        <activity
-            android:name=".Post.PostWritingActivity"
-            android:exported="true" />
     </application>
 
 </manifest>
