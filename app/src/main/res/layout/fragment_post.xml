@@ -3,14 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/main">
 
     <TextView
         android:id="@+id/writePostTitleText"
         android:layout_width="365dp"
         android:layout_height="45dp"
-        android:layout_marginTop="15dp"
-        android:text="TextView"
+        android:layout_marginTop="32dp"
+        android:text="제목을 입력하세요"
+        android:textColor="#FFFFFF"
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,7 +23,9 @@
         android:layout_width="215dp"
         android:layout_height="42dp"
         android:layout_marginTop="32dp"
-        android:text="TextView"
+        android:text="작성자"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/writePostTitleText"
         app:layout_constraintTop_toBottomOf="@+id/writePostTitleText" />
 
@@ -30,7 +34,9 @@
         android:layout_width="359dp"
         android:layout_height="505dp"
         android:layout_marginTop="100dp"
-        android:text="TextView"
+        android:text="내용"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@+id/writePostTitleText"
         app:layout_constraintTop_toBottomOf="@+id/writePostTitleText" />
 
