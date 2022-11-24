@@ -29,12 +29,15 @@ class ImagePostListFragment : Fragment() {
     }
 
     private fun initView() {
-        binding.postList.apply {
+        binding.imagePostBtn.setOnClickListener {
+            (activity as MainActivity).changeFragmentWithBackStack(ImagePostWriteFragment.newInstance())
+        }
+
+        binding.imagePostList.apply {
             setHasFixedSize(true)
+            viewModel.initImagePostList()
             layoutManager = LinearLayoutManager(requireContext())
-            adapter = ImagePostAdapter(viewModel) {
-                (activity as MainActivity).changeFragmentWithBackStack(ImagePostFragment.newInstance(it))
-            }
+            adapter = ImagePostAdapter(viewModel)
         }
     }
 

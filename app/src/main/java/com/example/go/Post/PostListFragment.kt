@@ -11,7 +11,6 @@ import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.go.MainActivity
 import com.example.go.PostViewModel
-import com.example.go.Utils.FBAuth.auth
 import com.example.go.databinding.FragmentPostListBinding
 
 class PostListFragment : Fragment() {
@@ -25,8 +24,6 @@ class PostListFragment : Fragment() {
     ): View {
         binding = FragmentPostListBinding.inflate(inflater, container, false)
 
-        val currentUser = auth.currentUser
-
         initView()
 
         return binding.root
@@ -39,6 +36,7 @@ class PostListFragment : Fragment() {
 
         binding.postList.apply {
             setHasFixedSize(true)
+            viewModel.initTextPostList()
             layoutManager = LinearLayoutManager(context)
             adapter = PostAdapter(viewModel) {
                 (activity as MainActivity).changeFragmentWithBackStack(PostFragment.newInstance(it))

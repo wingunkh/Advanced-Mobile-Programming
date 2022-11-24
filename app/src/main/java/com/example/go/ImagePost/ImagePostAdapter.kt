@@ -7,7 +7,7 @@ import com.example.go.PostViewModel
 import com.example.go.databinding.ItemImagePostBinding
 import com.example.go.Model.ImagePost
 
-class ImagePostAdapter(private val viewModel: PostViewModel, private val itemClicked: (position: Int) -> Unit) : RecyclerView.Adapter<ImagePostAdapter.ImagePostViewHolder>() {
+class ImagePostAdapter(private val viewModel: PostViewModel) : RecyclerView.Adapter<ImagePostAdapter.ImagePostViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImagePostViewHolder {
         val binding = ItemImagePostBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -17,13 +17,9 @@ class ImagePostAdapter(private val viewModel: PostViewModel, private val itemCli
     inner class ImagePostViewHolder(val binding: ItemImagePostBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(imagePost: ImagePost) {
             binding.apply {
-                itemImagePostUsername1.text = imagePost.user
-                itemImagePostUsername2.text = imagePost.user
-                postImageView.setImageResource(imagePost.imgSrc)
-
-                itemImagePostView.setOnClickListener {
-                    itemClicked(adapterPosition)
-                }
+                itemImagePostUsername.text = imagePost.uid
+                itemImagePostImage.setImageResource(imagePost.imgSrc)
+                itemImagePostContent.text = imagePost.content
             }
         }
     }

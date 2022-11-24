@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         changeFragment(ProfileFragment.newInstance())
     }
 
-    fun changeFragment(fragment: Fragment) {
+    private fun changeFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
             .replace(R.id.frame, fragment)
             .commit()

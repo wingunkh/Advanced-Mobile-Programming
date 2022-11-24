@@ -1,15 +1,8 @@
 package com.example.go.Utils
 
-import android.content.ContentValues.TAG
-import android.util.Log
-import com.example.go.Model.UserModel
 import com.example.go.Utils.FBRef.userRef
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.ktx.getValue
 import java.text.SimpleDateFormat
 import java.util.*
 

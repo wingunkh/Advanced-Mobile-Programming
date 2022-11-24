@@ -5,16 +5,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/main"
-    tools:context=".Profile.ProfileActivity">
+    tools:context=".Profile.ProfileFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/postList"
+        android:id="@+id/imagePostList"
         android:layout_width="380dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginTop="24dp"
+        android:paddingBottom="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" >
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/imagePostBtn"
+        android:layout_width="80dp"
+        android:layout_height="45dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="32dp"
+        android:elevation="10dp"
+        android:gravity="center"
+        android:background="@drawable/rounded_purple_btn"
+        android:text="WRITE"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

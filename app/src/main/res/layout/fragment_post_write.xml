@@ -3,59 +3,63 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/main">
 
     <EditText
         android:id="@+id/post_Writing_Title"
-        android:layout_width="366dp"
+        android:layout_width="355dp"
         android:layout_height="50dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="32dp"
+        android:background="@null"
         android:ems="10"
-        android:hint="제목을 입력하십시오"
-        android:text=""
+        android:hint="제목을 입력하세요"
         android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.488"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/post_Title_TextView"
+        android:id="@+id/post_Writing_Writer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:text="제목"
-        app:layout_constraintBottom_toTopOf="@+id/post_Writing_Title"
-        app:layout_constraintStart_toStartOf="@+id/post_Writing_Title" />
-
-    <Button
-        android:id="@+id/post_Writing_Back_Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="12dp"
-        android:text="BACK"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <Button
-        android:id="@+id/post_Writing_Post_Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginBottom="12dp"
-        android:text="POST"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_marginTop="8dp"
+        android:text="writer"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@+id/post_Writing_Title"
+        app:layout_constraintTop_toBottomOf="@+id/post_Writing_Title" />
 
     <EditText
         android:id="@+id/post_Writing_Content"
         android:layout_width="355dp"
-        android:layout_height="412dp"
-        android:hint="내용을 입력하십시오"
-        android:text=""
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/post_Writing_Title"
-        app:layout_constraintTop_toBottomOf="@+id/post_Writing_Title"
-        app:layout_constraintVertical_bias="0.234" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:background="@null"
+        android:hint="내용을 입력하세요"
+        android:inputType="textMultiLine"
+        android:minHeight="48dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        app:layout_constraintStart_toStartOf="@+id/post_Writing_Writer"
+        app:layout_constraintTop_toBottomOf="@+id/post_Writing_Writer" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/post_Writing_Post_Button"
+        android:layout_width="342dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="48dp"
+        android:background="@drawable/rounded_purple_btn"
+        android:elevation="10dp"
+        android:gravity="center"
+        android:text="Complete"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/post_Writing_Content" />
 </androidx.constraintlayout.widget.ConstraintLayout>
