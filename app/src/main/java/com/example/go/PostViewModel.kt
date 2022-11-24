@@ -1,10 +1,15 @@
 package com.example.go
 
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.go.Model.ImagePost
 import com.example.go.Model.TextPost
+import com.example.go.Model.UserModel
+import com.example.go.Utils.FBAuth.getTime
+import com.example.go.Utils.FBAuth.getDisplayName
+import com.example.go.Utils.FBRef
 
 class PostViewModel : ViewModel() {
 
@@ -21,19 +26,21 @@ class PostViewModel : ViewModel() {
         createImagePostDummyData()
 
         /* TODO Firebase 연동 후 DB 데이터 여기서 호출하면 됨 */
+        val postWriter = getDisplayName()
+
         // initTextPostList()
     }
 
     private fun createTextPostDummyData() {
         textPostList.apply {
-            add(TextPost("hi1", "geonhee", "hello"))
-            add(TextPost("hi2", "geonhee", "hello"))
-            add(TextPost("hi3", "geonhee", "hello"))
-            add(TextPost("hi4", "geonhee", "hello"))
-            add(TextPost("hi5", "geonhee", "hello"))
-            add(TextPost("hi6", "geonhee", "hello"))
-            add(TextPost("hi7", "geonhee", "hello"))
-            add(TextPost("hi8", "geonhee", "hello"))
+            add(TextPost("hi1", "geonhee", "hello", getTime()))
+            add(TextPost("hi2", "geonhee", "hello", getTime()))
+            add(TextPost("hi3", "geonhee", "hello", getTime()))
+            add(TextPost("hi4", "geonhee", "hello", getTime()))
+            add(TextPost("hi5", "geonhee", "hello", getTime()))
+            add(TextPost("hi6", "geonhee", "hello", getTime()))
+            add(TextPost("hi7", "geonhee", "hello", getTime()))
+            add(TextPost("hi8", "geonhee", "hello", getTime()))
         }
         _textPostLiveData.value = textPostList
     }
@@ -66,6 +73,8 @@ class PostViewModel : ViewModel() {
     }
 
     fun createTextPostItem(textPost: TextPost) {
+        FBRef.boardRef
+            .child(textPost.user).setValue(textPost)
         textPostList.add(textPost)
         _textPostLiveData.value = textPostList
     }

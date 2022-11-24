@@ -10,6 +10,8 @@ import com.example.go.MainActivity
 import com.example.go.PostViewModel
 import com.example.go.databinding.FragmentPostWriteBinding
 import com.example.go.Model.TextPost
+import com.example.go.Utils.FBAuth
+import com.example.go.Utils.FBAuth.getTime
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
@@ -19,9 +21,6 @@ class PostWriteFragment : Fragment() {
 
     private lateinit var binding : FragmentPostWriteBinding
     private val viewModel by activityViewModels<PostViewModel>()
-
-    private val user by lazy { Firebase.auth.currentUser }
-    //    private val userName = user?.uid.toString()
 
     private var position: Int = 0
 
@@ -39,9 +38,9 @@ class PostWriteFragment : Fragment() {
         binding.postWritingPostButton.setOnClickListener {
             val postTitle = binding.postWritingTitle.text.toString()
             val postContent = binding.postWritingContent.text.toString()
-            val postUser = user?.uid.toString()
-
-            viewModel.createTextPostItem(TextPost(postTitle, postUser, postContent))
+            val postUser = FBAuth.getDisplayName()
+            val postDate = getTime()
+            viewModel.createTextPostItem(TextPost(postTitle, postUser, postContent, postDate))
             (activity as MainActivity).removeFragment(this@PostWriteFragment)
 
             return@setOnClickListener

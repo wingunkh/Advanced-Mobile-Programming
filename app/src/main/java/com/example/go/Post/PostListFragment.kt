@@ -11,6 +11,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.go.MainActivity
 import com.example.go.PostViewModel
+import com.example.go.Utils.FBAuth.auth
 import com.example.go.databinding.FragmentPostListBinding
 
 class PostListFragment : Fragment() {
@@ -23,6 +24,8 @@ class PostListFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View {
         binding = FragmentPostListBinding.inflate(inflater, container, false)
+
+        val currentUser = auth.currentUser
 
         initView()
 
