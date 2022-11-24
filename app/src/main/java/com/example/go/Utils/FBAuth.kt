@@ -3,6 +3,7 @@ package com.example.go.Utils
 import android.content.ContentValues.TAG
 import android.util.Log
 import com.example.go.Model.UserModel
+import com.example.go.Utils.FBRef.followingRef
 import com.example.go.Utils.FBRef.userRef
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
@@ -43,7 +44,6 @@ object FBAuth {
                     displayName = name
                 })
             }
-
         }
 
         fun setPassword(pwd:String) {

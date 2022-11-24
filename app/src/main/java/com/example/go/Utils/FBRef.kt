@@ -13,6 +13,8 @@ object FBRef {
 
         private val database = Firebase.database
 
+        val followingRef = database.getReference("following")
+
         val boardRef = database.getReference("board")
 
         val commentRef = database.getReference("comment")

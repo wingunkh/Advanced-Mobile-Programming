@@ -13,6 +13,7 @@ import com.example.go.ImagePost.ImagePostListFragment
 import com.example.go.MainActivity
 import com.example.go.Post.PostListFragment
 import com.example.go.PostViewModel
+import com.example.go.Utils.FBAuth
 import com.example.go.databinding.FragmentProfileBinding
 import com.ramotion.circlemenu.CircleMenuView
 
