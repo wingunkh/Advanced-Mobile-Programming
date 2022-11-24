@@ -3,7 +3,7 @@
     <!-- we need two arrays, one for the icons and one for the colors of the icons-->
     <!-- icons array-->
     <array name="icons">
-        <item>@drawable/ic_baseline_image_24</item>
+        <item>@drawable/ic_baseline_list_24</item>
         <item>@drawable/ic_baseline_create_24</item>
         <item>@drawable/ic_baseline_search_24</item>
         <item>@drawable/ic_baseline_favorite_border_24</item>

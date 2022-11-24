@@ -55,11 +55,10 @@ class ImagePostListFragment : Fragment() {
                 Log.d("D", "onButtonClickAnimationEnd|index: $index")
 
                 when (index) {
-                    0 -> (activity as MainActivity).changeFragmentWithBackStack(ImagePostListFragment.newInstance())
-                    1 -> (activity as MainActivity).changeFragmentWithBackStack(PostListFragment.newInstance())
-                    2 -> (activity as MainActivity).changeFragmentWithBackStack(ImagePostListFragment.newInstance())
-                    3 -> (activity as MainActivity).changeFragmentWithBackStack(PostListFragment.newInstance())
-                    // 이게 굳이?
+                    0 -> (activity as MainActivity).changeFragmentWithBackStack(PostListFragment.newInstance())
+                    1 -> (activity as MainActivity).changeFragmentWithBackStack(ImagePostWriteFragment.newInstance())
+                    2 -> (activity as MainActivity).changeFragmentWithBackStack(SearchFragment.newInstance())
+                    3 -> (activity as MainActivity).changeFragmentWithBackStack(FavoriteFragment.newInstance())
                     4 -> (activity as MainActivity).changeFragmentWithBackStack(ProfileFragment.newInstance())
                 }
             }
