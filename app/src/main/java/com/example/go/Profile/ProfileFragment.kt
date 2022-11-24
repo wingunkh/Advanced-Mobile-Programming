@@ -30,6 +30,13 @@ class ProfileFragment : Fragment() {
     ): View {
         binding = FragmentProfileBinding.inflate(inflater, container, false)
 
+        val pageAdapter = ProfileAdapter(childFragmentManager)
+        val pager = binding.profileViewPager
+        pager.adapter = pageAdapter
+        val tab = binding.profileTab
+        tab.setupWithViewPager(pager)
+
+
         val menu = binding.circleMenu
         menu.eventListener = object : CircleMenuView.EventListener() {
             override fun onMenuOpenAnimationStart(view: CircleMenuView) {

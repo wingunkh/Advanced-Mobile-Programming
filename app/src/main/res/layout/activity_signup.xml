@@ -193,7 +193,7 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button_SignUp"
-            android:layout_width="335sp"
+            android:layout_width="335dp"
             android:layout_height="65dp"
             android:layout_marginTop="56dp"
             android:layout_marginBottom="72dp"
@@ -202,7 +202,7 @@
             android:gravity="center"
             android:text="Sign-Up"
             android:textColor="@color/white"
-            android:textSize="18dp"
+            android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/textButton_SignIn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
