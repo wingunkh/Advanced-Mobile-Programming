@@ -30,13 +30,13 @@ class PostListFragment : Fragment() {
     }
 
     private fun initView() {
+
         binding.postWritingButton.setOnClickListener {
             (activity as MainActivity).changeFragmentWithBackStack(PostWriteFragment.newInstance())
         }
 
         binding.postList.apply {
             setHasFixedSize(true)
-            viewModel.initTextPostList()
             layoutManager = LinearLayoutManager(context)
             adapter = PostAdapter(viewModel) {
                 (activity as MainActivity).changeFragmentWithBackStack(PostFragment.newInstance(it))

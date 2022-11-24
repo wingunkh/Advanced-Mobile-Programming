@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.example.go.ImagePost.ImagePostListFragment
 import com.example.go.Profile.ProfileFragment
 import com.example.go.databinding.ActivityMainBinding
 
@@ -15,8 +16,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
-        changeFragment(ProfileFragment.newInstance())
+        changeFragment(ImagePostListFragment.newInstance())
     }
 
     private fun changeFragment(fragment: Fragment) {

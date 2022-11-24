@@ -5,15 +5,34 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.go.R
+import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.GridLayoutManager
+import com.example.go.ImagePost.ImagePostAdapter
+import com.example.go.PostViewModel
+import com.example.go.databinding.FragmentProfileImagePostBinding
 
 class ProfileImagePostFragment : Fragment() {
+    private lateinit var binding: FragmentProfileImagePostBinding
+    private val viewModel by activityViewModels<PostViewModel>()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile_image_post, container, false)
+        binding = FragmentProfileImagePostBinding.inflate(inflater, container, false)
+
+        initView()
+
+        return binding.root
+    }
+
+    private fun initView() {
+
+        binding.profileImagePostList.apply {
+            setHasFixedSize(true)
+            layoutManager = GridLayoutManager(context, 3)
+            adapter = ProfileImagePostAdapter(viewModel)
+        }
     }
 
     fun newInstant() : ProfileImagePostFragment {

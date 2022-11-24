@@ -17,9 +17,9 @@ class ImagePostAdapter(private val viewModel: PostViewModel) : RecyclerView.Adap
     inner class ImagePostViewHolder(val binding: ItemImagePostBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(imagePost: ImagePost) {
             binding.apply {
-                itemImagePostUsername.text = imagePost.uid
-                itemImagePostImage.setImageResource(imagePost.imgSrc)
+                itemImagePostUsername.text = imagePost.username
                 itemImagePostContent.text = imagePost.content
+                itemImagePostImage.setImageResource(imagePost.imgSrc)
             }
         }
     }

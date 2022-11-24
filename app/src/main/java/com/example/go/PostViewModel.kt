@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.go.Model.ImagePost
 import com.example.go.Model.TextPost
+import com.example.go.Utils.FBAuth
 import com.example.go.Utils.FBRef
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -23,48 +24,68 @@ class PostViewModel : ViewModel() {
     val imagePostLiveData: LiveData<List<ImagePost>> get() = _imagePostLiveData
 
     init {
+        createImagePostDummyData()
         initTextPostList()
-        initImagePostList()
+        //initImagePostList()
     }
 
-    fun initTextPostList() {
+    private fun createImagePostDummyData() {
+        imagePostList.apply {
+            val newPostKey = "123456"
+            add(ImagePost(newPostKey, newPostKey, R.drawable.cake, "geonhee", "hi1", "2022-11-25"))
+            add(ImagePost(newPostKey, newPostKey, R.drawable.muhan, "geonhee", "hi2", "2022-11-25"))
+            add(ImagePost(newPostKey, newPostKey, R.drawable.cake, "geonhee", "hi2", "2022-11-25"))
+            add(ImagePost(newPostKey, newPostKey, R.drawable.muhan, "geonhee", "hi2", "2022-11-25"))
+            add(ImagePost(newPostKey, newPostKey, R.drawable.cake, "geonhee", "hi2", "2022-11-25"))
+            add(ImagePost(newPostKey, newPostKey, R.drawable.muhan, "geonhee", "hi2", "2022-11-25"))
+            add(ImagePost(newPostKey, newPostKey, R.drawable.cake, "geonhee", "hi2", "2022-11-25"))
+        }
+        _imagePostLiveData.value = imagePostList
+    }
 
-        FBRef.postRef.addValueEventListener(object : ValueEventListener {
+    private fun initTextPostList() {
+
+        val postListener = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 textPostList.clear()
                 if(snapshot.exists()) {
                     for (data in snapshot.children) {
+                        Log.d(TAG,"textPost : " + data.value)
                         val getData = data.getValue(TextPost::class.java)
                         textPostList.add(getData!!)
+                        textPostList.reverse()
+                        _textPostLiveData.value = textPostList
                     }
                 }
             }
             override fun onCancelled(error: DatabaseError) {
                 Log.w(TAG, "loadPost:onCancelled", error.toException())
             }
-        })
+        }
 
-        _textPostLiveData.value = textPostList
+        FBRef.postRef.addValueEventListener(postListener)
     }
 
-    fun initImagePostList() {
+    private fun initImagePostList() {
 
-        FBRef.imagePostRef.addValueEventListener(object : ValueEventListener {
+        val postListener = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 imagePostList.clear()
                 if(snapshot.exists()) {
                     for (data in snapshot.children) {
                         val getData = data.getValue(ImagePost::class.java)
                         imagePostList.add(getData!!)
+                        imagePostList.reverse()
+                        _imagePostLiveData.value = imagePostList
                     }
                 }
             }
             override fun onCancelled(error: DatabaseError) {
                 Log.w(TAG, "loadPost:onCancelled", error.toException())
             }
-        })
+        }
 
-        _imagePostLiveData.value = imagePostList
+        FBRef.imagePostRef.addValueEventListener(postListener)
     }
 
     fun createTextPostItem(newPostKey: String, textPost: TextPost) {
