@@ -14,7 +14,11 @@ import com.example.go.MainActivity
 import com.example.go.Post.PostListFragment
 import com.example.go.PostViewModel
 import com.example.go.Utils.FBAuth
+import com.example.go.Utils.FBRef
 import com.example.go.databinding.FragmentProfileBinding
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 import com.ramotion.circlemenu.CircleMenuView
 
 
@@ -102,6 +106,18 @@ class ProfileFragment : Fragment() {
                 }
             }
         }
+
+//        FBRef.profileRef.child(FBAuth.getDisplayName()).setValue(FBAuth.getDisplayName())
+//        FBRef.profileRef.child(FBAuth.getDisplayName()).child("name").setValue(FBAuth.getDisplayName())
+//
+//
+//        FBRef.profileRef.child(FBAuth.getDisplayName()).child("name").addListenerForSingleValueEvent(object :
+//            ValueEventListener {
+//            override fun onDataChange(dataSnapshot: DataSnapshot) {
+//                val name = dataSnapshot?.value
+//                binding.profileUserName.text= name as CharSequence?
+//            }
+//            override fun onCancelled(error: DatabaseError) { } })
 
         return binding.root
     }
