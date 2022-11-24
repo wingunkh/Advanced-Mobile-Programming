@@ -3,6 +3,7 @@ package com.example.go.Profile
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import com.example.go.Search.SearchFragment
 
 
 class ProfileAdapter(fm : FragmentManager) : FragmentPagerAdapter(fm) {

@@ -13,6 +13,7 @@ import com.example.go.ImagePost.ImagePostListFragment
 import com.example.go.MainActivity
 import com.example.go.Post.PostListFragment
 import com.example.go.PostViewModel
+import com.example.go.Search.SearchFragment
 import com.example.go.Utils.FBAuth
 import com.example.go.Utils.FBRef
 import com.example.go.databinding.FragmentProfileBinding
@@ -69,7 +70,7 @@ class ProfileFragment : Fragment() {
                 when (index) {
                     0 -> (activity as MainActivity).changeFragmentWithBackStack(ImagePostListFragment.newInstance())
                     1 -> (activity as MainActivity).changeFragmentWithBackStack(PostListFragment.newInstance())
-                    2 -> (activity as MainActivity).changeFragmentWithBackStack(ImagePostListFragment.newInstance())
+                    2 -> (activity as MainActivity).changeFragmentWithBackStack(SearchFragment.newInstance())
                     3 -> (activity as MainActivity).changeFragmentWithBackStack(PostListFragment.newInstance())
                     // 이게 굳이?
                     4 -> (activity as MainActivity).changeFragmentWithBackStack(newInstance())
@@ -99,7 +100,7 @@ class ProfileFragment : Fragment() {
                 when (buttonIndex) {
                     0 -> (activity as MainActivity).changeFragmentWithBackStack(ImagePostListFragment.newInstance())
                     1 -> (activity as MainActivity).changeFragmentWithBackStack(PostListFragment.newInstance())
-                    2 -> (activity as MainActivity).changeFragmentWithBackStack(ImagePostListFragment.newInstance())
+                    2 -> (activity as MainActivity).changeFragmentWithBackStack(SearchFragment.newInstance())
                     3 -> (activity as MainActivity).changeFragmentWithBackStack(PostListFragment.newInstance())
                     // 이게 굳이?
                     4 -> (activity as MainActivity).changeFragmentWithBackStack(newInstance())
