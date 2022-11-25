@@ -1,8 +1,10 @@
 package com.example.go.Model
 
 data class TextPost(
-    var title: String,
-    var user: String,
-    var content: String,
-    var date: String
+    var pid: String = "",
+    var uid: String = "",
+    var title: String = "",
+    var username: String = "",
+    var content: String = "",
+    var date: String = ""
 )

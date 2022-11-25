@@ -1,4 +1,4 @@
-package com.example.go.Post
+package com.example.go.ImagePost
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,17 +7,17 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.go.MainActivity
+import com.example.go.Model.ImagePost
 import com.example.go.PostViewModel
-import com.example.go.databinding.FragmentPostWriteBinding
-import com.example.go.Model.TextPost
 import com.example.go.Utils.FBAuth
 import com.example.go.Utils.FBRef
+import com.example.go.databinding.FragmentImagePostWriteBinding
 
 private const val POSITION = "position"
 
-class PostWriteFragment : Fragment() {
+class ImagePostWriteFragment : Fragment() {
 
-    private lateinit var binding : FragmentPostWriteBinding
+    private lateinit var binding : FragmentImagePostWriteBinding
     private val viewModel by activityViewModels<PostViewModel>()
 
     private var position: Int = 0
@@ -27,22 +27,20 @@ class PostWriteFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
-        binding = FragmentPostWriteBinding.inflate(inflater, container, false)
-        binding.postWritingWriter.text = FBAuth.getDisplayName()
+        binding = FragmentImagePostWriteBinding.inflate(inflater, container, false)
 
         arguments?.let {
             position = it.getInt(POSITION)
         }
 
-        binding.postWritingPostButton.setOnClickListener {
-            val newPostKey = FBRef.postRef.child(FBAuth.getUid()).push().key!!
-            val postTitle = binding.postWritingTitle.text.toString()
-            val postContent = binding.postWritingContent.text.toString()
+        binding.imagePostWriteBtn.setOnClickListener {
+            val newPostKey = FBRef.imagePostRef.child(FBAuth.getUid()).push().key!!
+            val postContent = binding.imagePostWriteContent.text.toString()
             val postUid = FBAuth.getUid()
             val postUser = FBAuth.getDisplayName()
             val postDate = FBAuth.getTime()
-            viewModel.createTextPostItem(newPostKey, TextPost(newPostKey, postUid, postTitle, postUser, postContent, postDate))
-            (activity as MainActivity).removeFragment(this@PostWriteFragment)
+            viewModel.createImagePostItem(newPostKey, ImagePost(newPostKey, postUid, 0, postUser, postContent, postDate))
+            (activity as MainActivity).removeFragment(this@ImagePostWriteFragment)
 
             return@setOnClickListener
         }
@@ -52,6 +50,6 @@ class PostWriteFragment : Fragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance() = PostWriteFragment()
+        fun newInstance() = ImagePostWriteFragment()
     }
 }

@@ -38,7 +38,7 @@ class PostFragment : Fragment(){
 
         binding.apply {
             writePostTitleText.text = viewModel.textPostLiveData.value!![position].title
-            binding.writePostUsername.text = viewModel.textPostLiveData.value!![position].user
+            binding.writePostUsername.text = viewModel.textPostLiveData.value!![position].username
             binding.writePostContentText.text = viewModel.textPostLiveData.value!![position].content
         }
 

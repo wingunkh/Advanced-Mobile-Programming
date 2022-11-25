@@ -1,5 +1,7 @@
 package com.example.go.Post
 
+import android.content.ContentValues
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -19,7 +21,8 @@ class PostAdapter(private val viewModel: PostViewModel, private val itemClicked:
         fun bind(post: TextPost) {
             binding.apply {
                 itemPostTitleText.text = post.title
-                itemPostUsername.text = post.user
+                itemPostUsername.text = post.username
+                itemPostDate.text = post.date
 
                 itemPostView.setOnClickListener {
                     itemClicked(adapterPosition)
@@ -29,6 +32,7 @@ class PostAdapter(private val viewModel: PostViewModel, private val itemClicked:
     }
 
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
+        Log.d(ContentValues.TAG,"from PostAdapter : " + viewModel.textPostLiveData.value!![position])
         holder.bind(viewModel.textPostLiveData.value!![position])
     }
 
