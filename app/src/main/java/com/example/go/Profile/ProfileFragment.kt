@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.go.PostViewModel
-import com.example.go.Utils.FBAuth
 import com.example.go.databinding.FragmentProfileBinding
 
 
@@ -31,7 +30,6 @@ class ProfileFragment : Fragment() {
         val tab = binding.profileTab
         tab.setupWithViewPager(pager)
 
-        binding.profileUserName.text = FBAuth.getDisplayName()
         return binding.root
     }
 
