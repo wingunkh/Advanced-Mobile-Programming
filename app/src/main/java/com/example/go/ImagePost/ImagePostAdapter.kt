@@ -25,7 +25,7 @@ class ImagePostAdapter(private val viewModel: PostViewModel) : RecyclerView.Adap
                 itemImagePostImage.setImageResource(imagePost.imgSrc)
                 itemImagePostFavoriteBtn.setOnClickListener() {
                     Log.d("hello from : position",imagePost.pid)
-                    FBRef.favoriteRef.child(FBAuth.getDisplayName()).child(imagePost.pid).setValue(imagePost.pid)
+                    FBRef.userRef.child(FBAuth.getUid()).child("favorite").child(imagePost.pid).setValue(imagePost.pid)
                 }
             }
         }
