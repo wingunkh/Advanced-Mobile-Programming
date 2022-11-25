@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import com.example.go.MainActivity
 import com.example.go.PostViewModel
+import com.example.go.Profile.ProfileFragment
 import com.example.go.Utils.FBRef
 import com.example.go.databinding.FragmentSearchBinding
 import com.google.firebase.database.DataSnapshot
@@ -39,11 +41,13 @@ class SearchFragment : Fragment(){
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 if(query!=null){
-                    FBRef.userRef.child("9c9c1dEYJEGFYvvXWM0HE71eelk8t1").addListenerForSingleValueEvent(object :
+                    FBRef.userRef.child(query).addListenerForSingleValueEvent(object :
                         ValueEventListener {
                         override fun onDataChange(dataSnapshot: DataSnapshot) {
-                            if(query == dataSnapshot?.key.toString())
-                                Log.d("씨발", "해당 UID를 지닌 사용자가 존재합니다!")
+                            if(query==dataSnapshot?.child("uid")?.value.toString()){
+                                Log.d("하하","UID가 존재합니다!")
+                                (activity as MainActivity).changeFragmentWithBackStack(ProfileFragment.newInstance())
+                            }
                         }
                         override fun onCancelled(error: DatabaseError) { } })
                 }
