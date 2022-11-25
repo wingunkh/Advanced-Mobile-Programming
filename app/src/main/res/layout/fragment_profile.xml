@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
         android:layout_marginTop="8dp"
-        android:text="Yunjeong"
+        android:text="aaa"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"

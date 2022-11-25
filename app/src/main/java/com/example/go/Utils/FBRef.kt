@@ -7,6 +7,8 @@ object FBRef {
 
         private val database = Firebase.database
 
+        val followingRef = database.getReference("following")
+
         val postRef = database.getReference("post")
 
         val imagePostRef = database.getReference("imagePost")
