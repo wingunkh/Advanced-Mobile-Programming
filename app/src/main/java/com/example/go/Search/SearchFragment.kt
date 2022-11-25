@@ -43,6 +43,18 @@ class SearchFragment : Fragment(){
             override fun onQueryTextSubmit(query: String?): Boolean {
 
                 // 검색 버튼 누를 때 호출
+//                if(query!=null){
+//                    FBRef.userRef.child("9c9c1dEYJEGFYvvXWM0HE71eelk8t1").addListenerForSingleValueEvent(object :
+//                        ValueEventListener {
+//                        override fun onDataChange(dataSnapshot: DataSnapshot) {
+//                            //val map = dataSnapshot?.key as Map<*, *>?
+//                            //val uid = map?.get("uid")?.toString()
+//                            if(query == dataSnapshot?.key.toString())
+//                                Log.d("씨발", "해당 UID를 지닌 사용자가 존재합니다!")
+//                        }
+//                        override fun onCancelled(error: DatabaseError) { } })
+//                }
+
 
                 return true
             }
