@@ -13,5 +13,5 @@ object FBRef {
 
         val userRef = database.getReference("User")
 
-
+        val followingRef = database.getReference("following")
 }
