@@ -32,13 +32,13 @@ class PostViewModel : ViewModel() {
     private fun createImagePostDummyData() {
         imagePostList.apply {
             val newPostKey = "123456"
-            add(ImagePost(newPostKey, newPostKey, R.drawable.cake, "geonhee", "hi1", "2022-11-25"))
-            add(ImagePost(newPostKey, newPostKey, R.drawable.muhan, "geonhee", "hi2", "2022-11-25"))
-            add(ImagePost(newPostKey, newPostKey, R.drawable.cake, "geonhee", "hi2", "2022-11-25"))
-            add(ImagePost(newPostKey, newPostKey, R.drawable.muhan, "geonhee", "hi2", "2022-11-25"))
-            add(ImagePost(newPostKey, newPostKey, R.drawable.cake, "geonhee", "hi2", "2022-11-25"))
-            add(ImagePost(newPostKey, newPostKey, R.drawable.muhan, "geonhee", "hi2", "2022-11-25"))
-            add(ImagePost(newPostKey, newPostKey, R.drawable.cake, "geonhee", "hi2", "2022-11-25"))
+            add(ImagePost("111111", newPostKey, R.drawable.cake, "geonhee", "hi1", "2022-11-25"))
+            add(ImagePost("222222", newPostKey, R.drawable.muhan, "geonhee", "hi2", "2022-11-25"))
+            add(ImagePost("333333", newPostKey, R.drawable.cake, "geonhee", "hi2", "2022-11-25"))
+            add(ImagePost("444444", newPostKey, R.drawable.muhan, "geonhee", "hi2", "2022-11-25"))
+            add(ImagePost("555555", newPostKey, R.drawable.cake, "geonhee", "hi2", "2022-11-25"))
+            add(ImagePost("666666", newPostKey, R.drawable.muhan, "geonhee", "hi2", "2022-11-25"))
+            add(ImagePost("777777", newPostKey, R.drawable.cake, "geonhee", "hi2", "2022-11-25"))
         }
         _imagePostLiveData.value = imagePostList
     }

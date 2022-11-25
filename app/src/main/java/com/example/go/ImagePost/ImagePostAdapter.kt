@@ -1,11 +1,14 @@
 package com.example.go.ImagePost
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.go.PostViewModel
 import com.example.go.databinding.ItemImagePostBinding
 import com.example.go.Model.ImagePost
+import com.example.go.Utils.FBAuth
+import com.example.go.Utils.FBRef
 
 class ImagePostAdapter(private val viewModel: PostViewModel) : RecyclerView.Adapter<ImagePostAdapter.ImagePostViewHolder>() {
 
@@ -20,6 +23,10 @@ class ImagePostAdapter(private val viewModel: PostViewModel) : RecyclerView.Adap
                 itemImagePostUsername.text = imagePost.username
                 itemImagePostContent.text = imagePost.content
                 itemImagePostImage.setImageResource(imagePost.imgSrc)
+                itemImagePostFavoriteBtn.setOnClickListener() {
+                    Log.d("hello from : position",imagePost.pid)
+                    FBRef.favoriteRef.child(FBAuth.getDisplayName()).child(imagePost.pid).setValue(imagePost.pid)
+                }
             }
         }
     }
