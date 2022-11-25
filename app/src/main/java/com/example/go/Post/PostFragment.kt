@@ -46,14 +46,14 @@ class PostFragment : Fragment(){
             FBRef.followingRef.child(FBAuth.getDisplayName()).child(binding.writePostUsername.text.toString()).setValue(binding.writePostUsername.text.toString())
         }
 
-        FBRef.followingRef.child(FBAuth.getDisplayName()).addListenerForSingleValueEvent(object :
+        FBRef.followingRef.child(FBAuth.getUid()).addListenerForSingleValueEvent(object :
             ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val map = dataSnapshot?.value as Map<*, *>?
-                var followingCheck = map?.get("${binding.writePostUsername.text}")?.toString()
+                val map = dataSnapshot.value as Map<*, *>?
+                val followingCheck = map?.get("${binding.writePostUsername.text}")?.toString()
                 if(followingCheck!=null){
                     binding.ggami.text = "당신은 이 사람과 친구군요!"
-                    binding.ggami.visibility=View.VISIBLE
+                    binding.ggami.visibility = View.VISIBLE
                 }
             }
             override fun onCancelled(error: DatabaseError) { } })

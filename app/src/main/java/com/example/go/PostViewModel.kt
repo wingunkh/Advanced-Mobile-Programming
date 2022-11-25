@@ -5,9 +5,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.go.Model.ImagePost
-import com.example.go.Model.TextPost
-import com.example.go.Utils.FBAuth
+import com.example.go.Model.*
 import com.example.go.Utils.FBRef
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -23,10 +21,17 @@ class PostViewModel : ViewModel() {
     private val _imagePostLiveData = MutableLiveData<List<ImagePost>>()
     val imagePostLiveData: LiveData<List<ImagePost>> get() = _imagePostLiveData
 
+    private val userList = mutableListOf<UserModel>()
+    private val _userLiveData = MutableLiveData<List<UserModel>>()
+    val userLiveData: LiveData<List<UserModel>> get() = _userLiveData
+
+    private val favoritePostList = mutableListOf<ImagePost>()
+
     init {
         createImagePostDummyData()
         initTextPostList()
         //initImagePostList()
+        initUserList()
     }
 
     private fun createImagePostDummyData() {
@@ -86,6 +91,27 @@ class PostViewModel : ViewModel() {
         }
 
         FBRef.imagePostRef.addValueEventListener(postListener)
+    }
+
+    private fun initUserList() {
+        val userListener = object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                userList.clear()
+                if(snapshot.exists()) {
+                    for (data in snapshot.children) {
+                        val getData = data.getValue(UserModel::class.java)
+                        userList.add(getData!!)
+                        userList.reverse()
+                        _userLiveData.value = userList
+                    }
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+                Log.w(TAG, "loadUser:onCancelled", error.toException())
+            }
+        }
+
+        FBRef.userRef.addValueEventListener(userListener)
     }
 
     fun createTextPostItem(newPostKey: String, textPost: TextPost) {
