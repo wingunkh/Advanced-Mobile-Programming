@@ -36,8 +36,8 @@ class SearchFragment : Fragment(){
                         ValueEventListener {
                         override fun onDataChange(dataSnapshot: DataSnapshot) {
                             if(query==dataSnapshot.child("uid").value.toString()){
-                                Log.d("하하","UID가 존재합니다!")
-                                initView()
+                                Log.d("From SearchFragment : ","해당 유저가 존재합니다!")
+                                search()
                             }
                         }
                         override fun onCancelled(error: DatabaseError) { } })
@@ -56,7 +56,7 @@ class SearchFragment : Fragment(){
         return binding.root
     }
 
-    private fun initView() {
+    private fun search() {
 
         binding.searchList.apply {
             setHasFixedSize(true)

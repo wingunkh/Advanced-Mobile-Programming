@@ -28,24 +28,9 @@ class PostViewModel : ViewModel() {
     private val favoritePostList = mutableListOf<ImagePost>()
 
     init {
-        createImagePostDummyData()
         initTextPostList()
-        //initImagePostList()
+        initImagePostList()
         initUserList()
-    }
-
-    private fun createImagePostDummyData() {
-        imagePostList.apply {
-            val newPostKey = "123456"
-            add(ImagePost(newPostKey, newPostKey, R.drawable.cake, "geonhee", "hi1", "2022-11-25"))
-            add(ImagePost(newPostKey, newPostKey, R.drawable.muhan, "geonhee", "hi2", "2022-11-25"))
-            add(ImagePost(newPostKey, newPostKey, R.drawable.cake, "geonhee", "hi2", "2022-11-25"))
-            add(ImagePost(newPostKey, newPostKey, R.drawable.muhan, "geonhee", "hi2", "2022-11-25"))
-            add(ImagePost(newPostKey, newPostKey, R.drawable.cake, "geonhee", "hi2", "2022-11-25"))
-            add(ImagePost(newPostKey, newPostKey, R.drawable.muhan, "geonhee", "hi2", "2022-11-25"))
-            add(ImagePost(newPostKey, newPostKey, R.drawable.cake, "geonhee", "hi2", "2022-11-25"))
-        }
-        _imagePostLiveData.value = imagePostList
     }
 
     private fun initTextPostList() {
@@ -118,6 +103,7 @@ class PostViewModel : ViewModel() {
         FBRef.postRef
             .child(newPostKey).setValue(textPost)
         textPostList.add(textPost)
+
         _textPostLiveData.value = textPostList
     }
 
@@ -126,5 +112,25 @@ class PostViewModel : ViewModel() {
             .child(newPostKey).setValue(imagePost)
         imagePostList.add(imagePost)
         _imagePostLiveData.value = imagePostList
+    }
+
+    fun getUser(uid: String): UserModel {
+        for(user in userList) {
+            if(user.uid === uid)
+                return user
+        }
+        return userList[0]
+    }
+
+    fun deleteTextPostItem(position: Int) {
+
+    }
+
+    fun deleteImagePostItem(position: Int) {
+
+    }
+
+    fun deleteUser(uid: String) {
+
     }
 }

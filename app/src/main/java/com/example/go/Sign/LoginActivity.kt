@@ -48,7 +48,6 @@ class LoginActivity : AppCompatActivity() {
             .addOnCompleteListener(this) {
                 if (it.isSuccessful) { //로그인 성공 시
                     startActivity(Intent(this, MainActivity::class.java)) //게시글 리스트 액티비티 시작
-                    setDisplayName()
                     Log.d("user", getDisplayName())
                     finish()
                 } else { //로그인 실패 시
