@@ -16,7 +16,6 @@ import com.example.go.R
 import com.example.go.Utils.FBAuth
 import com.example.go.Utils.FBRef
 import com.example.go.databinding.FragmentProfileBinding
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
@@ -24,11 +23,14 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
+private const val UID = "uid"
 
 class ProfileFragment : Fragment() {
 
     private lateinit var binding: FragmentProfileBinding
     private val viewModel by activityViewModels<PostViewModel>()
+
+    private var uid: String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,22 +39,30 @@ class ProfileFragment : Fragment() {
     ): View {
         binding = FragmentProfileBinding.inflate(inflater, container, false)
 
-        // 프로필 유저 정보 가져오기
-        if(viewModel.getUser(FBAuth.getUid()).imgUri=="") {
-            binding.profileUserImage.setImageResource(R.drawable.user)
-        } else {
-            CoroutineScope(Dispatchers.Main).launch {
-                Glide.with(requireContext())
-                    .load(viewModel.getUser(FBAuth.getUid()).imgUri)
-                    .into(binding.profileUserImage)
-            }
+        arguments?.let {
+            uid = it.getString(UID).toString()
         }
-        FBRef.userRef.child(FBAuth.getUid()).child("displayName").addListenerForSingleValueEvent(object :
-            ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                binding.profileUserName.text = dataSnapshot.value.toString()
+
+        // 프로필 유저 정보 가져오기
+            FBRef.userRef.child(uid).child("displayName").addListenerForSingleValueEvent(object :
+                ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    binding.profileUserName.text = dataSnapshot.value.toString()
+                }
+
+                override fun onCancelled(error: DatabaseError) {}
+            })
+            Log.d("displayName is ", binding.profileUserName.text.toString())
+            Log.d("displayName is ", viewModel.getUserDisplayName(uid))
+            if(viewModel.getUserImgUri(uid)=="") {
+                binding.profileUserImage.setImageResource(R.drawable.user)
+            } else {
+//                CoroutineScope(Dispatchers.Main).launch {
+//                    Glide.with(requireContext())
+//                        .load(viewModel.getUser(uid))
+//                        .into(profileUserImage)
+//                }
             }
-            override fun onCancelled(error: DatabaseError) { } })
 
         // 프로필 내 프래그먼트 어답터 연결
         val pageAdapter = ProfileAdapter(childFragmentManager)
@@ -71,6 +81,10 @@ class ProfileFragment : Fragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance() = ProfileFragment()
+        fun newInstance(uid: String) = ProfileFragment().apply {
+            arguments = Bundle().apply {
+                putString(UID, uid)
+            }
+        }
     }
 }

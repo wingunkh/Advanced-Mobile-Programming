@@ -14,6 +14,7 @@ import com.example.go.Post.PostListFragment
 import com.example.go.PostViewModel
 import com.example.go.Profile.ProfileFragment
 import com.example.go.Search.SearchFragment
+import com.example.go.Utils.FBAuth
 import com.example.go.databinding.FragmentImagePostListBinding
 import com.ramotion.circlemenu.CircleMenuView
 
@@ -59,7 +60,7 @@ class ImagePostListFragment : Fragment() {
                     1 -> (activity as MainActivity).changeFragmentWithBackStack(ImagePostWriteFragment.newInstance())
                     2 -> (activity as MainActivity).changeFragmentWithBackStack(SearchFragment.newInstance())
                     3 -> (activity as MainActivity).changeFragmentWithBackStack(FavoriteFragment.newInstance())
-                    4 -> (activity as MainActivity).changeFragmentWithBackStack(ProfileFragment.newInstance())
+                    4 -> (activity as MainActivity).changeFragmentWithBackStack(ProfileFragment.newInstance(FBAuth.getUid()))
                 }
             }
 
@@ -88,7 +89,7 @@ class ImagePostListFragment : Fragment() {
                     1 -> (activity as MainActivity).changeFragmentWithBackStack(ImagePostWriteFragment.newInstance())
                     2 -> (activity as MainActivity).changeFragmentWithBackStack(SearchFragment.newInstance())
                     3 -> (activity as MainActivity).changeFragmentWithBackStack(FavoriteFragment.newInstance())
-                    4 -> (activity as MainActivity).changeFragmentWithBackStack(ProfileFragment.newInstance())
+                    4 -> (activity as MainActivity).changeFragmentWithBackStack(ProfileFragment.newInstance(FBAuth.getUid()))
                 }
             }
         }

@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.go.Model.UserModel
 import com.example.go.PostViewModel
 import com.example.go.Utils.FBRef
 import com.example.go.databinding.ItemSearchProfileBinding
@@ -24,20 +23,21 @@ class SearchAdapter(private val viewModel: PostViewModel, private val query:Stri
         fun bind() {
             binding.apply {
                 if(query!=null) {
-                    if(query=="none"){
-                        itemSearchUserProfile.visibility= View.GONE
-                        itemSearchUsername.visibility=View.GONE
-                        noUser.visibility=View.VISIBLE
-                    }
-                    FBRef.userRef.child(query).addListenerForSingleValueEvent(object :
-                        ValueEventListener {
-                        override fun onDataChange(dataSnapshot: DataSnapshot) {
-                            if(query == dataSnapshot.child("uid").value.toString()){
-                                itemSearchUsername.text = dataSnapshot.child("displayName").value.toString()
-                                Log.d("From SearchAdapter : ","해당 유저가 존재합니다!")
-                            }
+                        if(query=="none"){
+                            itemSearchUserProfile.visibility= View.GONE
+                            itemSearchUsername.visibility=View.GONE
+                            noUser.visibility=View.VISIBLE
                         }
-                        override fun onCancelled(error: DatabaseError) { } })
+                        FBRef.userRef.child(query).addListenerForSingleValueEvent(object :
+                            ValueEventListener {
+                            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                                if(query == dataSnapshot.child("uid").value.toString()){
+                                    itemSearchUsername.text = dataSnapshot.child("displayName").value.toString()
+                                    Log.d("query is ", query)
+                                    Log.d("From SearchAdapter : ","해당 유저가 존재합니다!")
+                                }
+                            }
+                            override fun onCancelled(error: DatabaseError) { } })
                 }
                 itemSearchProfileView.setOnClickListener {
                     itemClicked(query)
@@ -47,7 +47,7 @@ class SearchAdapter(private val viewModel: PostViewModel, private val query:Stri
     }
 
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
-        holder.bind()
+            holder.bind()
     }
 
     override fun getItemCount() : Int = 1

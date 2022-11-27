@@ -20,6 +20,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.go.ImagePost.ImagePostListFragment
 import com.example.go.Profile.ProfileFragment
+import com.example.go.Utils.FBAuth
 import com.example.go.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
