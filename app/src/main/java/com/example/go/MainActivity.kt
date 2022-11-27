@@ -56,6 +56,7 @@ class MainActivity : AppCompatActivity() {
             .commit()
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     fun requestSinglePermission(permission: String) {
         if (checkSelfPermission(permission) == PackageManager.PERMISSION_GRANTED)
             return
@@ -84,6 +85,7 @@ class MainActivity : AppCompatActivity() {
 
     private val channelId = "default"
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun createNotificationChannel() {
         val channel = NotificationChannel(
             channelId, "default channel",
