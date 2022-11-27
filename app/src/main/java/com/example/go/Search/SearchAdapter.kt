@@ -8,7 +8,7 @@ import com.example.go.Model.UserModel
 import com.example.go.R
 import com.example.go.databinding.ItemSearchProfileBinding
 
-class SearchAdapter(private val viewModel: PostViewModel) : RecyclerView.Adapter<SearchAdapter.PostViewHolder>() {
+class SearchAdapter(private val viewModel: PostViewModel, private val query:String) : RecyclerView.Adapter<SearchAdapter.PostViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
         val binding = ItemSearchProfileBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -19,8 +19,10 @@ class SearchAdapter(private val viewModel: PostViewModel) : RecyclerView.Adapter
 
         fun bind(user: UserModel) {
             binding.apply {
-                itemSearchUserProfile.setImageResource(R.drawable.ic_baseline_search_24)
-                itemSearchUsername.text = user.displayName
+                if(user.uid==query) {
+                    //itemSearchUserProfile.setImageResource(R.drawable.ic_baseline_search_24)
+                    itemSearchUsername.text = user.displayName
+                }
             }
         }
     }

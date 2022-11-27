@@ -37,7 +37,7 @@ class SearchFragment : Fragment(){
                         override fun onDataChange(dataSnapshot: DataSnapshot) {
                             if(query==dataSnapshot.child("uid").value.toString()){
                                 Log.d("From SearchFragment : ","해당 유저가 존재합니다!")
-                                search()
+                                search(query)
                             }
                         }
                         override fun onCancelled(error: DatabaseError) { } })
@@ -56,12 +56,12 @@ class SearchFragment : Fragment(){
         return binding.root
     }
 
-    private fun search() {
+    private fun search(query:String) {
 
         binding.searchList.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(requireContext())
-            adapter = SearchAdapter(viewModel)
+            adapter = SearchAdapter(viewModel,query)
         }
     }
 
