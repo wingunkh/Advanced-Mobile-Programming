@@ -32,15 +32,15 @@ class ProfileFragment : Fragment() {
         binding = FragmentProfileBinding.inflate(inflater, container, false)
 
         // 프로필 유저 정보 가져오기
-        if(viewModel.getUser(FBAuth.getUid()).imgUri=="") {
-            binding.profileUserImage.setImageResource(R.drawable.user)
-        } else {
-            CoroutineScope(Dispatchers.Main).launch {
-                Glide.with(requireContext())
-                    .load(viewModel.getUser(FBAuth.getUid()).imgUri)
-                    .into(binding.profileUserImage)
-            }
-        }
+//        if(viewModel.getUser(FBAuth.getUid()).imgUri=="") {
+//            binding.profileUserImage.setImageResource(R.drawable.user)
+//        } else {
+//            CoroutineScope(Dispatchers.Main).launch {
+//                Glide.with(requireContext())
+//                    .load(viewModel.getUser(FBAuth.getUid()).imgUri)
+//                    .into(binding.profileUserImage)
+//            }
+//        }
         binding.profileUserName.text = FBAuth.getDisplayName()
 
         // 프로필 내 프래그먼트 어답터 연결
@@ -54,15 +54,6 @@ class ProfileFragment : Fragment() {
             (activity as MainActivity).changeFragmentWithBackStack(
                 ProfileEditFragment.newInstance())
         }
-
-        // 프로필 편집 또는 팔로우 기능
-//        when(binding.profileBtn.text) {
-//            "Edit Profile" -> (activity as MainActivity).changeFragmentWithBackStack(
-//                ProfileEditFragment.newInstance())
-//            "Follow" -> TODO()
-//            else -> (activity as MainActivity).changeFragmentWithBackStack(
-//                ProfileEditFragment.newInstance())
-//        }
 
         return binding.root
     }
