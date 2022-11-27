@@ -55,15 +55,6 @@ class ProfileFragment : Fragment() {
                 ProfileEditFragment.newInstance())
         }
 
-        // 프로필 편집 또는 팔로우 기능
-//        when(binding.profileBtn.text) {
-//            "Edit Profile" -> (activity as MainActivity).changeFragmentWithBackStack(
-//                ProfileEditFragment.newInstance())
-//            "Follow" -> TODO()
-//            else -> (activity as MainActivity).changeFragmentWithBackStack(
-//                ProfileEditFragment.newInstance())
-//        }
-
         return binding.root
     }
 
