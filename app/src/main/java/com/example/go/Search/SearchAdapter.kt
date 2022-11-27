@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.go.Model.UserModel
 import com.example.go.PostViewModel
 import com.example.go.Utils.FBRef
 import com.example.go.databinding.ItemSearchProfileBinding
@@ -12,9 +13,8 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 
-class SearchAdapter(private val viewModel: PostViewModel, private val query:String) : RecyclerView.Adapter<SearchAdapter.PostViewHolder>() {
+class SearchAdapter(private val viewModel: PostViewModel, private val query:String, private val itemClicked: (uid:String) -> Unit) : RecyclerView.Adapter<SearchAdapter.PostViewHolder>() {
 
-    //private val itemClicked: (position: Int, user: UserModel -> Unit)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
         val binding = ItemSearchProfileBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return PostViewHolder(binding)
@@ -24,24 +24,15 @@ class SearchAdapter(private val viewModel: PostViewModel, private val query:Stri
         fun bind() {
             binding.apply {
                 if(query!=null) {
-                        if(query=="none"){
-                            itemSearchUserProfile.visibility= View.GONE
-                            itemSearchUsername.visibility=View.GONE
-                            noUser.visibility=View.VISIBLE
+                        if(query=="none") {
+                            itemSearchUserProfile.visibility = View.GONE
+                            itemSearchUsername.visibility = View.GONE
+                            noUser.visibility = View.VISIBLE
                         }
-                        FBRef.userRef.child(query).addListenerForSingleValueEvent(object :
-                            ValueEventListener {
-                            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                                if(query == dataSnapshot.child("uid").value.toString()){
-                                    itemSearchUsername.text = dataSnapshot.child("displayName").value.toString()
-                                    Log.d("From SearchAdapter : ","해당 유저가 존재합니다!")
-                                }
-                            }
-                            override fun onCancelled(error: DatabaseError) { } })
                 }
-//                itemSearchProfileView.setOnClickListener {
-//                    itemClicked(adapterPosition, )
-//                }
+                itemSearchProfileView.setOnClickListener {
+                    itemClicked(query)
+                }
             }
         }
     }

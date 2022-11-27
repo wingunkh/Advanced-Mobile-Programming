@@ -114,6 +114,7 @@ class PostViewModel : ViewModel() {
         _imagePostLiveData.value = imagePostList
     }
 
+
     fun getUser(uid: String): UserModel {
         for(user in userList) {
             if(user.uid == uid)
