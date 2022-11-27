@@ -18,6 +18,7 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.example.go.ImagePost.ImagePostListFragment
 import com.example.go.Profile.ProfileFragment
 import com.example.go.databinding.ActivityMainBinding
 
@@ -61,7 +62,7 @@ class MainActivity : AppCompatActivity() {
         val serviceIntent = Intent(this@MainActivity, NotificationService::class.java)
         startService(serviceIntent)
 
-        changeFragment(ProfileFragment.newInstance())
+        changeFragment(ImagePostListFragment.newInstance())
     }
 
     fun changeFragment(fragment: Fragment) {
