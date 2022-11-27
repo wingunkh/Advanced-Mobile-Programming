@@ -10,13 +10,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.net.toUri
 import androidx.fragment.app.activityViewModels
 import com.bumptech.glide.Glide
 import com.example.go.ImagePost.ImagePostListFragment
 import com.example.go.MainActivity
+import com.example.go.Model.UserModel
 import com.example.go.PostViewModel
 import com.example.go.R
 import com.example.go.Utils.FBAuth
+import com.example.go.Utils.FBRef
 import com.example.go.databinding.FragmentProfileEditBinding
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.coroutines.CoroutineScope
@@ -37,14 +40,10 @@ class ProfileEditFragment : Fragment() {
         binding = FragmentProfileEditBinding.inflate(inflater, container, false)
 
         // 프로필 유저 정보 가져오기
-        if(viewModel.getUser(FBAuth.getUid()).imgUri==="") {
+        if(viewModel.getUser(FBAuth.getUid()).imgUri=="") {
             binding.profileEditImage.setImageResource(R.drawable.ic_baseline_face_24)
         } else {
-            CoroutineScope(Dispatchers.Main).launch {
-                Glide.with(requireContext())
-                    .load(viewModel.getUser(FBAuth.getUid()).imgUri)
-                    .into(binding.profileEditImage)
-            }
+            binding.profileEditImage.setImageURI(viewModel.getUser(FBAuth.getUid()).imgUri.toUri())
         }
         binding.profileEditUsername.setText(FBAuth.getDisplayName())
         binding.profileEditEmail.text = FBAuth.getEmail()
@@ -63,27 +62,10 @@ class ProfileEditFragment : Fragment() {
             val storageReference =
                 FirebaseStorage.getInstance().getReference("images/${FBAuth.getTime()}")
 
-            binding.profileEditImage.apply {
-                isDrawingCacheEnabled = true
-                buildDrawingCache()
-            }
-            val bitmap = (binding.profileEditImage.drawable as BitmapDrawable).bitmap
-            val baos = ByteArrayOutputStream()
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
-            val data = baos.toByteArray()
-            val uploadTask = storageReference.putBytes(data)
-            uploadTask.addOnFailureListener {}.addOnSuccessListener {}
-            uploadTask.continueWithTask { task->
-                if (!task.isSuccessful){
-                    task.exception?.let{
-                        throw it
-                    }
-                }
-                storageReference.downloadUrl
-            }.addOnCompleteListener{ task->
-                if(task.isSuccessful){
-                    (activity as MainActivity).removeFragment(this@ProfileEditFragment)
-                }
+            storageReference.putFile(ImageUri).addOnFailureListener {}.addOnSuccessListener {
+                val user = viewModel.getUser(FBAuth.getUid())
+                FBRef.userRef.child(user.uid).setValue(UserModel(user.uid,ImageUri.toString(),user.password,user.email,user.displayName))
+                (activity as MainActivity).removeFragment(this@ProfileEditFragment)
             }
             (activity as MainActivity).changeFragmentWithBackStack(ImagePostListFragment.newInstance())
         }
@@ -96,7 +78,7 @@ class ProfileEditFragment : Fragment() {
 
         var intent = Intent().apply {
             type = "image/*"
-            action = Intent.ACTION_GET_CONTENT
+            action = Intent.ACTION_OPEN_DOCUMENT
         }
         startActivityForResult(intent, 100)
     }

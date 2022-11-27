@@ -1,5 +1,6 @@
 package com.example.go.ImagePost
 
+import android.provider.ContactsContract.CommonDataKinds.Im
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -28,19 +29,12 @@ class ImagePostAdapter(private val viewModel: PostViewModel) : RecyclerView.Adap
         fun bind(imagePost: ImagePost) {
 
             binding.apply {
-
                 itemImagePostImage.setImageURI(imagePost.imgUri.toUri())
-
-                CoroutineScope(Dispatchers.Main).launch {
-                    Glide.with(itemView.context)
-                        .load(imagePost.imgUri)
-                        .into(itemImagePostImage)
-                }
                 itemImagePostUsername.text = imagePost.username
                 itemImagePostContent.text = imagePost.content
-                itemImagePostFavoriteBtn.setOnClickListener() {
-                    FBRef.userRef.child(FBAuth.getUid()).child("favorite").child(imagePost.pid).setValue(imagePost)
-                }
+//                itemImagePostFavoriteBtn.setOnClickListener() {
+//                    FBRef.userRef.child(FBAuth.getUid()).child("favorite").child(imagePost.pid).setValue(imagePost)
+//                }
             }
         }
     }
