@@ -32,15 +32,15 @@ class ProfileFragment : Fragment() {
         binding = FragmentProfileBinding.inflate(inflater, container, false)
 
         // 프로필 유저 정보 가져오기
-        if(viewModel.getUser(FBAuth.getUid()).imgUri=="") {
-            binding.profileUserImage.setImageResource(R.drawable.user)
-        } else {
-            CoroutineScope(Dispatchers.Main).launch {
-                Glide.with(requireContext())
-                    .load(viewModel.getUser(FBAuth.getUid()).imgUri)
-                    .into(binding.profileUserImage)
-            }
-        }
+//        if(viewModel.getUser(FBAuth.getUid()).imgUri=="") {
+//            binding.profileUserImage.setImageResource(R.drawable.user)
+//        } else {
+//            CoroutineScope(Dispatchers.Main).launch {
+//                Glide.with(requireContext())
+//                    .load(viewModel.getUser(FBAuth.getUid()).imgUri)
+//                    .into(binding.profileUserImage)
+//            }
+//        }
         binding.profileUserName.text = FBAuth.getDisplayName()
 
         // 프로필 내 프래그먼트 어답터 연결

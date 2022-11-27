@@ -6,12 +6,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
-    <service
-        android:name=".NotificationService"
-        android:enabled="true"
-        android:exported="true"
-        tools:ignore="WrongManifestParent" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:allowBackup="true"
@@ -57,6 +52,13 @@
         <activity
             android:name=".Post.PostWriteFragment"
             android:exported="true" />
+
+        <service
+            android:name=".NotificationService"
+            android:enabled="true"
+            android:exported="true"
+            tools:ignore="WrongManifestParent" />
+
     </application>
 
 </manifest>
