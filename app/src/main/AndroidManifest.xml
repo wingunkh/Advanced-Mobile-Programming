@@ -7,12 +7,6 @@
         tools:ignore="ScopedStorage" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
-    <service
-        android:name=".NotificationService"
-        android:enabled="true"
-        android:exported="true"
-        tools:ignore="WrongManifestParent" />
-
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -56,6 +50,10 @@
             android:exported="true" />
         <activity
             android:name=".Post.PostWriteFragment"
+            android:exported="true" />
+        <service
+            android:name=".NotificationService"
+            android:enabled="true"
             android:exported="true" />
     </application>
 
