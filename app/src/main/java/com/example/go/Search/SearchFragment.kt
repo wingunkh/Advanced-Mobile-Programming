@@ -9,7 +9,9 @@ import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.go.MainActivity
 import com.example.go.PostViewModel
+import com.example.go.Profile.ProfileFragment
 import com.example.go.Utils.FBRef
 import com.example.go.databinding.FragmentSearchBinding
 import com.google.firebase.database.DataSnapshot
@@ -62,8 +64,10 @@ class SearchFragment : Fragment(){
 
         binding.searchList.apply {
             setHasFixedSize(true)
-            layoutManager = LinearLayoutManager(requireContext())
-            adapter = SearchAdapter(viewModel,query)
+            layoutManager = LinearLayoutManager(context)
+            adapter = SearchAdapter(viewModel, query) {
+                (activity as MainActivity).changeFragmentWithBackStack(ProfileFragment.newInstance())
+            }
         }
     }
 
