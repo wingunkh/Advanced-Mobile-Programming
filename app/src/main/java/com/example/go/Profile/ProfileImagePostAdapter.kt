@@ -4,9 +4,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
-import com.example.go.PostViewModel
+import com.bumptech.glide.Glide
 import com.example.go.Model.ImagePost
+import com.example.go.PostViewModel
+import com.example.go.R
 import com.example.go.databinding.ItemProfileImagePostBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class ProfileImagePostAdapter(private val viewModel: PostViewModel) : RecyclerView.Adapter<ProfileImagePostAdapter.ProfileImagePostViewHolder>() {
 
@@ -17,8 +22,17 @@ class ProfileImagePostAdapter(private val viewModel: PostViewModel) : RecyclerVi
 
     inner class ProfileImagePostViewHolder(val binding: ItemProfileImagePostBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(imagePost: ImagePost) {
+
             binding.apply {
-                itemProfileImagePostImage.setImageURI(imagePost.imgUri.toUri())
+                if(imagePost.imgUri=="") {
+                    itemProfileImagePostImage.setImageResource(R.drawable.user)
+                } else {
+                    CoroutineScope(Dispatchers.Main).launch {
+                        Glide.with(itemView.context)
+                            .load(imagePost.imgUri.toUri())
+                            .into(itemProfileImagePostImage)
+                    }
+                }
             }
         }
     }

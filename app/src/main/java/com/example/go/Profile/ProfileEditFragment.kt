@@ -2,8 +2,6 @@ package com.example.go.Profile
 
 import android.app.Activity
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -25,15 +23,14 @@ import com.google.firebase.storage.FirebaseStorage
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.io.ByteArrayOutputStream
 
 class ProfileEditFragment : Fragment() {
 
     private lateinit var binding: FragmentProfileEditBinding
-    private lateinit var ImageUri: Uri
     private val viewModel by activityViewModels<PostViewModel>()
+    private var ImageUri: Uri = viewModel.getUser(FBAuth.getUid()).imgUri.toUri()
 
-    override fun onCreateView(
+        override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
@@ -43,7 +40,11 @@ class ProfileEditFragment : Fragment() {
         if(viewModel.getUser(FBAuth.getUid()).imgUri=="") {
             binding.profileEditImage.setImageResource(R.drawable.ic_baseline_face_24)
         } else {
-            binding.profileEditImage.setImageURI(viewModel.getUser(FBAuth.getUid()).imgUri.toUri())
+            CoroutineScope(Dispatchers.Main).launch {
+                Glide.with(requireContext())
+                    .load(ImageUri)
+                    .into(binding.profileEditImage)
+            }
         }
         binding.profileEditUsername.setText(FBAuth.getDisplayName())
         binding.profileEditEmail.text = FBAuth.getEmail()
@@ -76,7 +77,7 @@ class ProfileEditFragment : Fragment() {
 
     private fun selectImage() {
 
-        var intent = Intent().apply {
+        val intent = Intent().apply {
             type = "image/*"
             action = Intent.ACTION_OPEN_DOCUMENT
         }

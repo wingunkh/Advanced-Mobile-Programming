@@ -1,6 +1,5 @@
 package com.example.go.ImagePost
 
-import android.R.attr
 import android.annotation.SuppressLint
 import android.app.Activity.RESULT_CANCELED
 import android.content.Intent
@@ -69,7 +68,7 @@ class ImagePostWriteFragment : Fragment() {
 
     private fun selectImage() {
 
-        var intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
+        val intent = Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
             type = "image/*"
             action = Intent.ACTION_GET_CONTENT
         }
@@ -79,7 +78,6 @@ class ImagePostWriteFragment : Fragment() {
     @SuppressLint("WrongConstant")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-
         if (resultCode != RESULT_CANCELED) {
             if (requestCode == 100) {
                 if (data != null) {

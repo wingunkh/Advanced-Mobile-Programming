@@ -2,25 +2,18 @@
 
 package com.example.go.Profile
 
-import android.app.Activity
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.example.go.ImagePost.ImagePostListFragment
 import com.example.go.MainActivity
 import com.example.go.PostViewModel
 import com.example.go.R
 import com.example.go.Utils.FBAuth
 import com.example.go.databinding.FragmentProfileBinding
-import com.google.firebase.storage.FirebaseStorage
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -42,7 +35,11 @@ class ProfileFragment : Fragment() {
         if(viewModel.getUser(FBAuth.getUid()).imgUri=="") {
             binding.profileUserImage.setImageResource(R.drawable.user)
         } else {
-            binding.profileUserImage.setImageURI(viewModel.getUser(FBAuth.getUid()).imgUri.toUri())
+            CoroutineScope(Dispatchers.Main).launch {
+                Glide.with(requireContext())
+                    .load(viewModel.getUser(FBAuth.getUid()).imgUri)
+                    .into(binding.profileUserImage)
+            }
         }
         binding.profileUserName.text = FBAuth.getDisplayName()
 
