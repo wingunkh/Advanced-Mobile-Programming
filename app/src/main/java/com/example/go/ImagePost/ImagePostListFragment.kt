@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.go.Favorite.FavoriteFragment
+import com.example.go.Follow.FollowFragment
 import com.example.go.MainActivity
 import com.example.go.Post.PostListFragment
 import com.example.go.PostViewModel
@@ -59,7 +59,7 @@ class ImagePostListFragment : Fragment() {
                     0 -> (activity as MainActivity).changeFragmentWithBackStack(PostListFragment.newInstance())
                     1 -> (activity as MainActivity).changeFragmentWithBackStack(ImagePostWriteFragment.newInstance())
                     2 -> (activity as MainActivity).changeFragmentWithBackStack(SearchFragment.newInstance())
-                    3 -> (activity as MainActivity).changeFragmentWithBackStack(FavoriteFragment.newInstance())
+                    3 -> (activity as MainActivity).changeFragmentWithBackStack(FollowFragment.newInstance())
                     4 -> (activity as MainActivity).changeFragmentWithBackStack(ProfileFragment.newInstance(FBAuth.getUid()))
                 }
             }
@@ -88,7 +88,7 @@ class ImagePostListFragment : Fragment() {
                     0 -> (activity as MainActivity).changeFragmentWithBackStack(PostListFragment.newInstance())
                     1 -> (activity as MainActivity).changeFragmentWithBackStack(ImagePostWriteFragment.newInstance())
                     2 -> (activity as MainActivity).changeFragmentWithBackStack(SearchFragment.newInstance())
-                    3 -> (activity as MainActivity).changeFragmentWithBackStack(FavoriteFragment.newInstance())
+                    3 -> (activity as MainActivity).changeFragmentWithBackStack(FollowFragment.newInstance())
                     4 -> (activity as MainActivity).changeFragmentWithBackStack(ProfileFragment.newInstance(FBAuth.getUid()))
                 }
             }

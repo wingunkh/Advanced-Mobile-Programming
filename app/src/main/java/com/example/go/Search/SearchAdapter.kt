@@ -12,14 +12,14 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 
-class SearchAdapter(private val viewModel: PostViewModel, private val query:String, private val itemClicked: (uid:String) -> Unit) : RecyclerView.Adapter<SearchAdapter.PostViewHolder>() {
+class SearchAdapter(private val viewModel: PostViewModel, private val query:String, private val itemClicked: (uid:String) -> Unit) : RecyclerView.Adapter<SearchAdapter.SearchAdapterViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchAdapterViewHolder {
         val binding = ItemSearchProfileBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return PostViewHolder(binding)
+        return SearchAdapterViewHolder(binding)
     }
 
-    inner class PostViewHolder(val binding: ItemSearchProfileBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class SearchAdapterViewHolder(val binding: ItemSearchProfileBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind() {
             binding.apply {
                 if(query!=null) {
@@ -46,7 +46,7 @@ class SearchAdapter(private val viewModel: PostViewModel, private val query:Stri
         }
     }
 
-    override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: SearchAdapterViewHolder, position: Int) {
             holder.bind()
     }
 
