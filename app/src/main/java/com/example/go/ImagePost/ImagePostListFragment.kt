@@ -1,10 +1,13 @@
 package com.example.go.ImagePost
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,6 +20,7 @@ import com.example.go.Search.SearchFragment
 import com.example.go.Utils.FBAuth
 import com.example.go.databinding.FragmentImagePostListBinding
 import com.ramotion.circlemenu.CircleMenuView
+import kotlin.system.exitProcess
 
 class ImagePostListFragment : Fragment() {
 
@@ -59,7 +63,30 @@ class ImagePostListFragment : Fragment() {
                     0 -> (activity as MainActivity).changeFragmentWithBackStack(PostListFragment.newInstance())
                     1 -> (activity as MainActivity).changeFragmentWithBackStack(ImagePostWriteFragment.newInstance())
                     2 -> (activity as MainActivity).changeFragmentWithBackStack(SearchFragment.newInstance())
-                    3 -> (activity as MainActivity).changeFragmentWithBackStack(FollowFragment.newInstance())
+                    3 -> {
+                        val handler= DialogInterface.OnClickListener{ p0, p1 ->
+                            if(p1==DialogInterface.BUTTON_POSITIVE){
+                                activity?.let { ActivityCompat.finishAffinity(it) } //액티비티 종료
+                                exitProcess(0) //프로세스 종료
+                            }
+                        }
+
+                        AlertDialog.Builder(context).run{ //AlterDialog 클래스의 빌더를 이용해 알림 창을 구현
+                            setTitle("Go-SNS")
+                            setIcon(android.R.drawable.ic_dialog_info)
+                            setMessage("정말 종료하시겠습니까?")
+                            setPositiveButton("예",handler)
+                            setNegativeButton("아니오",null)
+                            show()
+                        }
+
+//                        val intent = Intent(activity, LoginActivity::class.java).apply {
+//                            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+//                        }
+//                        FBAuth.auth.signOut()
+//                        startActivity(intent)
+//                        Toast.makeText(context,"Logout",Toast.LENGTH_SHORT).show()
+                    }
                     4 -> (activity as MainActivity).changeFragmentWithBackStack(ProfileFragment.newInstance(FBAuth.getUid()))
                 }
             }
