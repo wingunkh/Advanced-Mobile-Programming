@@ -3,6 +3,7 @@
 package com.example.go.Profile
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +14,12 @@ import com.example.go.MainActivity
 import com.example.go.PostViewModel
 import com.example.go.R
 import com.example.go.Utils.FBAuth
+import com.example.go.Utils.FBRef
 import com.example.go.databinding.FragmentProfileBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -41,7 +47,12 @@ class ProfileFragment : Fragment() {
                     .into(binding.profileUserImage)
             }
         }
-        binding.profileUserName.text = FBAuth.getDisplayName()
+        FBRef.userRef.child(FBAuth.getUid()).child("displayName").addListenerForSingleValueEvent(object :
+            ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                binding.profileUserName.text = dataSnapshot.value.toString()
+            }
+            override fun onCancelled(error: DatabaseError) { } })
 
         // 프로필 내 프래그먼트 어답터 연결
         val pageAdapter = ProfileAdapter(childFragmentManager)

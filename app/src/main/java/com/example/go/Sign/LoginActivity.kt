@@ -6,7 +6,11 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.go.MainActivity
+import com.example.go.Utils.FBAuth
+import com.example.go.Utils.FBAuth.auth
 import com.example.go.Utils.FBAuth.getDisplayName
+
+import com.example.go.Utils.FBAuth.setDisplayName
 import com.example.go.databinding.ActivityLoginBinding
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -46,7 +50,7 @@ class LoginActivity : AppCompatActivity() {
             .addOnCompleteListener(this) {
                 if (it.isSuccessful) { //로그인 성공 시
                     startActivity(Intent(this, MainActivity::class.java)) //게시글 리스트 액티비티 시작
-                    Log.d("user", getDisplayName())
+                    Log.d("user", "디스플레이네임"+getDisplayName())
                     finish()
                 } else { //로그인 실패 시
                     Log.w("LoginActivity", "signInWithEmail", it.exception)

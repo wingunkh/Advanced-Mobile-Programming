@@ -33,6 +33,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         // 현재 기기에 설정된 쓰기 권한을 가져오기 위한 변수
+
         var writePermission = ContextCompat.checkSelfPermission(
             this,
             android.Manifest.permission.WRITE_EXTERNAL_STORAGE
