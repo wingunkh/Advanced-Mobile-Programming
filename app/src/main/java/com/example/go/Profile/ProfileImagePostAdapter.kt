@@ -2,6 +2,7 @@ package com.example.go.Profile
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import com.example.go.PostViewModel
 import com.example.go.Model.ImagePost
@@ -17,7 +18,7 @@ class ProfileImagePostAdapter(private val viewModel: PostViewModel) : RecyclerVi
     inner class ProfileImagePostViewHolder(val binding: ItemProfileImagePostBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(imagePost: ImagePost) {
             binding.apply {
-                itemProfileImagePostImage.setImageResource(imagePost.imgSrc)
+                itemProfileImagePostImage.setImageURI(imagePost.imgUri.toUri())
             }
         }
     }

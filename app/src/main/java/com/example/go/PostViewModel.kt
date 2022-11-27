@@ -5,9 +5,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.go.Model.ImagePost
-import com.example.go.Model.TextPost
-import com.example.go.Utils.FBAuth
+import com.example.go.Model.*
 import com.example.go.Utils.FBRef
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -23,24 +21,16 @@ class PostViewModel : ViewModel() {
     private val _imagePostLiveData = MutableLiveData<List<ImagePost>>()
     val imagePostLiveData: LiveData<List<ImagePost>> get() = _imagePostLiveData
 
-    init {
-        createImagePostDummyData()
-        initTextPostList()
-        //initImagePostList()
-    }
+    private val userList = mutableListOf<UserModel>()
+    private val _userLiveData = MutableLiveData<List<UserModel>>()
+    val userLiveData: LiveData<List<UserModel>> get() = _userLiveData
 
-    private fun createImagePostDummyData() {
-        imagePostList.apply {
-            val newPostKey = "123456"
-            add(ImagePost("111111", newPostKey, R.drawable.cake, "geonhee", "hi1", "2022-11-25"))
-            add(ImagePost("222222", newPostKey, R.drawable.muhan, "geonhee", "hi2", "2022-11-25"))
-            add(ImagePost("333333", newPostKey, R.drawable.cake, "geonhee", "hi2", "2022-11-25"))
-            add(ImagePost("444444", newPostKey, R.drawable.muhan, "geonhee", "hi2", "2022-11-25"))
-            add(ImagePost("555555", newPostKey, R.drawable.cake, "geonhee", "hi2", "2022-11-25"))
-            add(ImagePost("666666", newPostKey, R.drawable.muhan, "geonhee", "hi2", "2022-11-25"))
-            add(ImagePost("777777", newPostKey, R.drawable.cake, "geonhee", "hi2", "2022-11-25"))
-        }
-        _imagePostLiveData.value = imagePostList
+    private val favoritePostList = mutableListOf<ImagePost>()
+
+    init {
+        initTextPostList()
+        initImagePostList()
+        initUserList()
     }
 
     private fun initTextPostList() {
@@ -88,10 +78,32 @@ class PostViewModel : ViewModel() {
         FBRef.imagePostRef.addValueEventListener(postListener)
     }
 
+    private fun initUserList() {
+        val userListener = object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                userList.clear()
+                if(snapshot.exists()) {
+                    for (data in snapshot.children) {
+                        val getData = data.getValue(UserModel::class.java)
+                        userList.add(getData!!)
+                        userList.reverse()
+                        _userLiveData.value = userList
+                    }
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+                Log.w(TAG, "loadUser:onCancelled", error.toException())
+            }
+        }
+
+        FBRef.userRef.addValueEventListener(userListener)
+    }
+
     fun createTextPostItem(newPostKey: String, textPost: TextPost) {
         FBRef.postRef
             .child(newPostKey).setValue(textPost)
         textPostList.add(textPost)
+
         _textPostLiveData.value = textPostList
     }
 
@@ -100,5 +112,25 @@ class PostViewModel : ViewModel() {
             .child(newPostKey).setValue(imagePost)
         imagePostList.add(imagePost)
         _imagePostLiveData.value = imagePostList
+    }
+
+    fun getUser(uid: String): UserModel {
+        for(user in userList) {
+            if(user.uid === uid)
+                return user
+        }
+        return userList[0]
+    }
+
+    fun deleteTextPostItem(position: Int) {
+
+    }
+
+    fun deleteImagePostItem(position: Int) {
+
+    }
+
+    fun deleteUser(uid: String) {
+
     }
 }

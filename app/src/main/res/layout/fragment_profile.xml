@@ -10,7 +10,7 @@
         android:id="@+id/profileUserName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
+        android:layout_marginStart="64dp"
         android:layout_marginTop="8dp"
         android:text="aaa"
         android:textColor="#FFFFFF"
@@ -22,7 +22,7 @@
         android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="58dp"
+        android:layout_marginStart="72dp"
         android:layout_marginTop="48dp"
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
@@ -103,7 +103,7 @@
     </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button2"
+        android:id="@+id/profileBtn"
         android:layout_width="342dp"
         android:layout_height="45dp"
         android:layout_marginTop="16dp"
@@ -125,7 +125,7 @@
         android:background="@color/main"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2"
+        app:layout_constraintTop_toBottomOf="@+id/profileBtn"
         app:tabIndicatorColor="@color/white"
         app:tabSelectedTextColor="@color/white"
         app:tabTextColor="@color/sub"

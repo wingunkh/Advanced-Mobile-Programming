@@ -5,10 +5,12 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.go.Model.ImagePost
 import com.example.go.Utils.FBRef
 import com.example.go.Utils.FBAuth
 import com.example.go.databinding.ActivitySignupBinding
 import com.example.go.Model.UserModel
+import com.example.go.R
 
 class SignUpActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,7 +42,7 @@ class SignUpActivity : AppCompatActivity() {
                 if (it.isSuccessful) {
                     val uid = it.result.user?.uid
                     FBRef.userRef
-                        .child(uid!!).setValue(UserModel(uid,userEmail,password,nickname))
+                        .child(uid!!).setValue(UserModel(uid,"",password,userEmail,nickname))
                     Toast.makeText(this, "SignUp Success!.", Toast.LENGTH_SHORT).show()
                     val intent = Intent(this, LoginActivity::class.java)
                     intent.flags =
