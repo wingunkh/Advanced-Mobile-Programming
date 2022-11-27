@@ -34,6 +34,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         // 현재 기기에 설정된 쓰기 권한을 가져오기 위한 변수
+
         var writePermission = ContextCompat.checkSelfPermission(
             this,
             android.Manifest.permission.WRITE_EXTERNAL_STORAGE
@@ -85,6 +86,7 @@ class MainActivity : AppCompatActivity() {
             .commit()
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     fun requestSinglePermission(permission: String) {
         if (checkSelfPermission(permission) == PackageManager.PERMISSION_GRANTED)
             return
@@ -113,6 +115,7 @@ class MainActivity : AppCompatActivity() {
 
     private val channelId = "default"
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun createNotificationChannel() {
         val channel = NotificationChannel(
             channelId, "default channel",

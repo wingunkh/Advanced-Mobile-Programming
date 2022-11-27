@@ -41,6 +41,31 @@ class NotificationService : Service() {
                 )
             )
         }
+        FBRef.postRef.addChildEventListener(object: ChildEventListener {
+            override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
+                val message = snapshot.value.toString().substring(1,snapshot.value.toString().length-1).split(", ")
+                val title = message[4].split("=")[1]
+                val user = message[5].split("=")[1]
+                showNotification(title, user)
+            }
+
+            override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onChildRemoved(snapshot: DataSnapshot) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
     }
 
     private val myNotificationId = 1
@@ -72,31 +97,6 @@ class NotificationService : Service() {
             createNotification()
         }
 
-        FBRef.postRef.addChildEventListener(object: ChildEventListener {
-            override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
-                Log.d("firebase", snapshot.value.toString())
-                val message = snapshot.value.toString().substring(1,snapshot.value.toString().length-1).split(", ")
-                val title = message[4].split("=")[1]
-                val user = message[5].split("=")[1]
-                showNotification(title, user)
-            }
 
-            override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
-                TODO("Not yet implemented")
-            }
-
-            override fun onChildRemoved(snapshot: DataSnapshot) {
-                TODO("Not yet implemented")
-            }
-
-            override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {
-                TODO("Not yet implemented")
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
-            }
-
-        })
     }
 }
