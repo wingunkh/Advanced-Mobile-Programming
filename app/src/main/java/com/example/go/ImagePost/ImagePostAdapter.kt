@@ -9,6 +9,7 @@ import com.example.go.PostViewModel
 import com.example.go.databinding.ItemImagePostBinding
 import com.example.go.Model.ImagePost
 import com.example.go.R
+import com.example.go.Utils.FBAuth
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -24,8 +25,17 @@ class ImagePostAdapter(private val viewModel: PostViewModel) : RecyclerView.Adap
         fun bind(imagePost: ImagePost) {
 
             binding.apply {
+                if(viewModel.getUser(FBAuth.getUid()).imgUri == "") {
+                    itemImagePostUserProfile.setImageResource(R.drawable.user)
+                } else {
+                    CoroutineScope(Dispatchers.Main).launch {
+                        Glide.with(itemView.context)
+                            .load(viewModel.getUser(FBAuth.getUid()).imgUri.toUri())
+                            .into(itemImagePostUserProfile)
+                    }
+                }
                 if(imagePost.imgUri=="") {
-                    itemImagePostImage.setImageResource(R.drawable.user)
+                    itemImagePostImage.setImageResource(R.drawable.muhan)
                 } else {
                     CoroutineScope(Dispatchers.Main).launch {
                         Glide.with(itemView.context)
