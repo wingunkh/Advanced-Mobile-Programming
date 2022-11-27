@@ -19,7 +19,8 @@ class PostAdapter(private val viewModel: PostViewModel, private val itemClicked:
         fun bind(post: TextPost) {
             binding.apply {
                 itemPostTitleText.text = post.title
-                itemPostUsername.text = post.user
+                itemPostUsername.text = post.username
+                itemPostDate.text = post.date
 
                 itemPostView.setOnClickListener {
                     itemClicked(adapterPosition)

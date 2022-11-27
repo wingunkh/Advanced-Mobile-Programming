@@ -12,6 +12,7 @@ import com.example.go.databinding.FragmentPostWriteBinding
 import com.example.go.Model.TextPost
 import com.example.go.Utils.FBAuth
 import com.example.go.Utils.FBAuth.getTime
+import com.example.go.Utils.FBRef
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
@@ -36,11 +37,13 @@ class PostWriteFragment : Fragment() {
         }
 
         binding.postWritingPostButton.setOnClickListener {
+            val newPostKey = FBRef.postRef.child(FBAuth.getUid()).push().key!!
             val postTitle = binding.postWritingTitle.text.toString()
             val postContent = binding.postWritingContent.text.toString()
+            val postUid = FBAuth.getUid()
             val postUser = FBAuth.getDisplayName()
-            val postDate = getTime()
-            viewModel.createTextPostItem(TextPost(postTitle, postUser, postContent, postDate))
+            val postDate = FBAuth.getTime()
+            viewModel.createTextPostItem(newPostKey, TextPost(newPostKey, postUid, postTitle, postUser, postContent, postDate))
             (activity as MainActivity).removeFragment(this@PostWriteFragment)
 
             return@setOnClickListener

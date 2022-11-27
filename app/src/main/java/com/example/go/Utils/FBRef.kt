@@ -1,25 +1,19 @@
 package com.example.go.Utils
 
-import android.content.ContentValues.TAG
-import android.util.Log
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
-import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 
 object FBRef {
 
         private val database = Firebase.database
 
-        val boardRef = database.getReference("board")
+        val followingRef = database.getReference("following")
 
-        val commentRef = database.getReference("comment")
+        val postRef = database.getReference("post")
 
-        val mapRef = database.getReference("Marker")
+        val imagePostRef = database.getReference("imagePost")
 
         val userRef = database.getReference("User")
 
-
+        val favoriteRef = database.getReference("favorite")
 }
