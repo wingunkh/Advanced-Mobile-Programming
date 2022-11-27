@@ -116,7 +116,7 @@ class PostViewModel : ViewModel() {
 
     fun getUser(uid: String): UserModel {
         for(user in userList) {
-            if(user.uid === uid)
+            if(user.uid == uid)
                 return user
         }
         return userList[0]

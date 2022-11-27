@@ -18,6 +18,7 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.example.go.ImagePost.ImagePostListFragment
 import com.example.go.Profile.ProfileFragment
 import com.example.go.databinding.ActivityMainBinding
 
@@ -32,6 +33,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         // 현재 기기에 설정된 쓰기 권한을 가져오기 위한 변수
+
         var writePermission = ContextCompat.checkSelfPermission(
             this,
             android.Manifest.permission.WRITE_EXTERNAL_STORAGE
@@ -61,7 +63,7 @@ class MainActivity : AppCompatActivity() {
         val serviceIntent = Intent(this@MainActivity, NotificationService::class.java)
         startService(serviceIntent)
 
-        changeFragment(ProfileFragment.newInstance())
+        changeFragment(ImagePostListFragment.newInstance())
     }
 
     fun changeFragment(fragment: Fragment) {
@@ -83,7 +85,6 @@ class MainActivity : AppCompatActivity() {
             .commit()
     }
 
-    @RequiresApi(Build.VERSION_CODES.M)
     fun requestSinglePermission(permission: String) {
         if (checkSelfPermission(permission) == PackageManager.PERMISSION_GRANTED)
             return
@@ -110,4 +111,43 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-  }
+    private val channelId = "default"
+
+    fun createNotificationChannel() {
+        val channel = NotificationChannel(
+            channelId, "default channel",
+            NotificationManager.IMPORTANCE_DEFAULT
+        )
+        channel.description = "description text of this channel."
+        val notificationManager =
+            getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        notificationManager.createNotificationChannel(channel)
+    }
+
+    private var myNotificationId = 1
+        get() = field++
+
+    fun showNotification(title: String, user: String) {
+        val builder = NotificationCompat.Builder(this, channelId)
+            .setSmallIcon(R.mipmap.ic_launcher)
+            .setContentTitle(title)
+            .setContentText(user + "님이 글을 작성하였습니다.")
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+        NotificationManagerCompat.from(this)
+            .notify(myNotificationId, builder.build())
+    }
+
+    fun showNotificationBigText() {
+        val builder = NotificationCompat.Builder(this, channelId)
+            .setSmallIcon(R.mipmap.ic_launcher)
+            .setContentTitle("제목")
+            .setContentText("내용")
+            .setStyle(
+                NotificationCompat.BigTextStyle()
+                    .bigText("큰 내용")
+            )
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+        NotificationManagerCompat.from(this)
+            .notify(myNotificationId, builder.build())
+    }
+}
