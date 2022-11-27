@@ -37,7 +37,7 @@ class ProfileEditFragment : Fragment() {
         binding = FragmentProfileEditBinding.inflate(inflater, container, false)
 
         // 프로필 유저 정보 가져오기
-        if(viewModel.getUser(FBAuth.getUid()).imgUri==="") {
+        if(viewModel.getUser(FBAuth.getUid()).imgUri=="") {
             binding.profileEditImage.setImageResource(R.drawable.ic_baseline_face_24)
         } else {
             CoroutineScope(Dispatchers.Main).launch {
