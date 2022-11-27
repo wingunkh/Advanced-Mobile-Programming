@@ -56,6 +56,7 @@ class MainActivity : AppCompatActivity() {
             .commit()
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     fun requestSinglePermission(permission: String) {
         if (checkSelfPermission(permission) == PackageManager.PERMISSION_GRANTED)
             return
@@ -82,43 +83,4 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private val channelId = "default"
-
-    fun createNotificationChannel() {
-        val channel = NotificationChannel(
-            channelId, "default channel",
-            NotificationManager.IMPORTANCE_DEFAULT
-        )
-        channel.description = "description text of this channel."
-        val notificationManager =
-            getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        notificationManager.createNotificationChannel(channel)
-    }
-
-    private var myNotificationId = 1
-        get() = field++
-
-    fun showNotification(title: String, user: String) {
-        val builder = NotificationCompat.Builder(this, channelId)
-            .setSmallIcon(R.mipmap.ic_launcher)
-            .setContentTitle(title)
-            .setContentText(user + "님이 글을 작성하였습니다.")
-            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-        NotificationManagerCompat.from(this)
-            .notify(myNotificationId, builder.build())
-    }
-
-    fun showNotificationBigText() {
-        val builder = NotificationCompat.Builder(this, channelId)
-            .setSmallIcon(R.mipmap.ic_launcher)
-            .setContentTitle("제목")
-            .setContentText("내용")
-            .setStyle(
-                NotificationCompat.BigTextStyle()
-                    .bigText("큰 내용")
-            )
-            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-        NotificationManagerCompat.from(this)
-            .notify(myNotificationId, builder.build())
-    }
-}
+  }

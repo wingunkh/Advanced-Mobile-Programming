@@ -74,7 +74,6 @@ class NotificationService : Service() {
 
         FBRef.postRef.addChildEventListener(object: ChildEventListener {
             override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
-                Log.d("firebase", snapshot.value.toString())
                 val message = snapshot.value.toString().substring(1,snapshot.value.toString().length-1).split(", ")
                 val title = message[4].split("=")[1]
                 val user = message[5].split("=")[1]
