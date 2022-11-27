@@ -25,12 +25,12 @@ class ImagePostAdapter(private val viewModel: PostViewModel) : RecyclerView.Adap
         fun bind(imagePost: ImagePost) {
 
             binding.apply {
-                if(viewModel.getUser(FBAuth.getUid()).imgUri == "") {
+                if(viewModel.getUserImgUri(FBAuth.getUid()) == "") {
                     itemImagePostUserProfile.setImageResource(R.drawable.user)
                 } else {
                     CoroutineScope(Dispatchers.Main).launch {
                         Glide.with(itemView.context)
-                            .load(viewModel.getUser(FBAuth.getUid()).imgUri.toUri())
+                            .load(viewModel.getUserImgUri(FBAuth.getUid()).toUri())
                             .into(itemImagePostUserProfile)
                     }
                 }

@@ -66,7 +66,7 @@ class SearchFragment : Fragment(){
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context)
             adapter = SearchAdapter(viewModel,query) {
-                (activity as MainActivity).changeFragmentWithBackStack(ProfileFragment.newInstance())
+                (activity as MainActivity).changeFragmentWithBackStack(ProfileFragment.newInstance(it))
             }
         }
     }

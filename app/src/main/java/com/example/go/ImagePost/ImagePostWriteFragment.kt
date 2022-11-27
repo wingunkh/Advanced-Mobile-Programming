@@ -24,8 +24,8 @@ import com.google.firebase.storage.FirebaseStorage
 class ImagePostWriteFragment : Fragment() {
 
     private lateinit var binding: FragmentImagePostWriteBinding
-    private lateinit var ImageUri: Uri
     private val viewModel by activityViewModels<PostViewModel>()
+    private lateinit var ImageUri: Uri
 
 
     override fun onCreateView(

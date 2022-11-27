@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.go.Model.UserModel
 import com.example.go.PostViewModel
 import com.example.go.Utils.FBRef
 import com.example.go.databinding.ItemSearchProfileBinding
@@ -34,6 +33,7 @@ class SearchAdapter(private val viewModel: PostViewModel, private val query:Stri
                             override fun onDataChange(dataSnapshot: DataSnapshot) {
                                 if(query == dataSnapshot.child("uid").value.toString()){
                                     itemSearchUsername.text = dataSnapshot.child("displayName").value.toString()
+                                    Log.d("query is ", query)
                                     Log.d("From SearchAdapter : ","해당 유저가 존재합니다!")
                                 }
                             }

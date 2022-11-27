@@ -21,16 +21,9 @@ class PostViewModel : ViewModel() {
     private val _imagePostLiveData = MutableLiveData<List<ImagePost>>()
     val imagePostLiveData: LiveData<List<ImagePost>> get() = _imagePostLiveData
 
-    private val userList = mutableListOf<UserModel>()
-    private val _userLiveData = MutableLiveData<List<UserModel>>()
-    val userLiveData: LiveData<List<UserModel>> get() = _userLiveData
-
-    private val favoritePostList = mutableListOf<ImagePost>()
-
     init {
         initTextPostList()
         initImagePostList()
-        initUserList()
     }
 
     private fun initTextPostList() {
@@ -78,27 +71,6 @@ class PostViewModel : ViewModel() {
         FBRef.imagePostRef.addValueEventListener(postListener)
     }
 
-    private fun initUserList() {
-        val userListener = object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                userList.clear()
-                if(snapshot.exists()) {
-                    for (data in snapshot.children) {
-                        val getData = data.getValue(UserModel::class.java)
-                        userList.add(getData!!)
-                        userList.reverse()
-                        _userLiveData.value = userList
-                    }
-                }
-            }
-            override fun onCancelled(error: DatabaseError) {
-                Log.w(TAG, "loadUser:onCancelled", error.toException())
-            }
-        }
-
-        FBRef.userRef.addValueEventListener(userListener)
-    }
-
     fun createTextPostItem(newPostKey: String, textPost: TextPost) {
         FBRef.postRef
             .child(newPostKey).setValue(textPost)
@@ -114,13 +86,36 @@ class PostViewModel : ViewModel() {
         _imagePostLiveData.value = imagePostList
     }
 
-    fun getUser(uid: String): UserModel {
-        for(user in userList) {
-            if(user.uid === uid)
-                return user
+    fun getUserImgUri(uid: String): String {
+        var imgUri = ""
+        if (uid != "") {
+            FBRef.userRef.child(uid).child("imgUri").addListenerForSingleValueEvent(object :
+                ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    imgUri = dataSnapshot.value.toString()
+                }
+
+                override fun onCancelled(error: DatabaseError) {}
+            })
         }
-        return userList[0]
+        return imgUri
     }
+
+    fun getUserDisplayName(uid: String): String {
+        var displayName = ""
+        if (uid != "") {
+            FBRef.userRef.child(uid).child("displayName").addListenerForSingleValueEvent(object :
+                ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    displayName = dataSnapshot.value.toString()
+                }
+
+                override fun onCancelled(error: DatabaseError) {}
+            })
+        }
+        return displayName
+    }
+
 
     fun deleteTextPostItem(position: Int) {
 

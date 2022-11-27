@@ -28,7 +28,7 @@ class ProfileEditFragment : Fragment() {
 
     private lateinit var binding: FragmentProfileEditBinding
     private val viewModel by activityViewModels<PostViewModel>()
-    private var ImageUri: Uri = viewModel.getUser(FBAuth.getUid()).imgUri.toUri()
+    private var ImageUri: Uri = viewModel.getUserImgUri(FBAuth.getUid()).toUri()
 
         override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,7 +37,7 @@ class ProfileEditFragment : Fragment() {
         binding = FragmentProfileEditBinding.inflate(inflater, container, false)
 
         // 프로필 유저 정보 가져오기
-        if(viewModel.getUser(FBAuth.getUid()).imgUri=="") {
+        if(viewModel.getUserImgUri(FBAuth.getUid())=="") {
             binding.profileEditImage.setImageResource(R.drawable.ic_baseline_face_24)
         } else {
             CoroutineScope(Dispatchers.Main).launch {
@@ -60,14 +60,16 @@ class ProfileEditFragment : Fragment() {
 
         // 완료 버튼 클릭
         binding.profileEditFinishBtn.setOnClickListener {
-            val storageReference =
-                FirebaseStorage.getInstance().getReference("images/${FBAuth.getTime()}")
+//            val storageReference =
+//                FirebaseStorage.getInstance().getReference("images/${FBAuth.getTime()}")
 
-            storageReference.putFile(ImageUri).addOnFailureListener {}.addOnSuccessListener {
-                val user = viewModel.getUser(FBAuth.getUid())
-                FBRef.userRef.child(user.uid).setValue(UserModel(user.uid,ImageUri.toString(),user.password,user.email,user.displayName))
-                (activity as MainActivity).removeFragment(this@ProfileEditFragment)
-            }
+//            storageReference.putFile(ImageUri).addOnFailureListener {}.addOnSuccessListener {
+//                val user = viewModel.getUser(FBAuth.getUid())
+//                FBRef.userRef.child(user.uid).setValue(UserModel(user.uid,ImageUri.toString(),user.password,user.email,user.displayName))
+//                (activity as MainActivity).removeFragment(this@ProfileEditFragment)
+//            }
+
+            FBAuth.setDisplayName(binding.profileEditUsername.text.toString())
             (activity as MainActivity).changeFragmentWithBackStack(ImagePostListFragment.newInstance())
         }
 
