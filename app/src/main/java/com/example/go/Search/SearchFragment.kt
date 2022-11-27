@@ -39,12 +39,14 @@ class SearchFragment : Fragment(){
                                 Log.d("From SearchFragment : ","해당 유저가 존재합니다!")
                                 search(query)
                             }
+                            else{
+                                search("none")
+                            }
                         }
                         override fun onCancelled(error: DatabaseError) { } })
                 }
                 return true
             }
-
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 // 검색창에서 글자가 변경이 일어날 때마다 호출
