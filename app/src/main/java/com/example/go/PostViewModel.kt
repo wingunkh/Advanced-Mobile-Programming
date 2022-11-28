@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.go.Model.*
+import com.example.go.Utils.FBAuth
 import com.example.go.Utils.FBRef
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -73,7 +74,7 @@ class PostViewModel : ViewModel() {
 
     fun createTextPostItem(newPostKey: String, textPost: TextPost) {
         FBRef.postRef
-            .child(newPostKey).setValue(textPost)
+            .child(FBAuth.getUid()).child(newPostKey).setValue(textPost)
         textPostList.add(textPost)
 
         _textPostLiveData.value = textPostList

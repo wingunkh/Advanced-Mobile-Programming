@@ -43,14 +43,13 @@ class PostWriteFragment : Fragment() {
         }
 
         binding.postWritingPostButton.setOnClickListener {
-
             val newPostKey = FBRef.postRef.child(FBAuth.getUid()).push().key!!
             val postTitle = binding.postWritingTitle.text.toString()
             val postContent = binding.postWritingContent.text.toString()
             val postUid = FBAuth.getUid()
             val postUser =  binding.postWritingWriter.text.toString()
             val postDate = FBAuth.getTime()
-            viewModel.createTextPostItem(postUid, TextPost(newPostKey, postUid, postTitle, postUser, postContent, postDate))
+            viewModel.createTextPostItem(newPostKey, TextPost(newPostKey, postUid, postTitle, postUser, postContent, postDate))
             (activity as MainActivity).removeFragment(this@PostWriteFragment)
 
             (activity as MainActivity).changeFragmentWithBackStack(PostListFragment.newInstance())

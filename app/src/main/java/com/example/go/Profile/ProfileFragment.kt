@@ -69,6 +69,11 @@ class ProfileFragment : Fragment() {
                 else { //아직 팔로우 하지 않았다면
                     binding.profileViewPager.visibility = View.GONE //게시글 안 보임
                     binding.profileBtn.text = "follow" //프로필의 버튼이 "follow" 라고 뜸
+                    if(uid == FBAuth.getUid()) { //아직 팔로우 하지 않았으나 본인의 프로필이라면
+                        binding.profileViewPager.visibility = View.VISIBLE //게시글 보임
+                        binding.profileBtn.text = "my profile" //프로필의 버튼이 "my profile 라고 뜸
+                    }
+
                 }
             } override fun onCancelled(error: DatabaseError) {}
         })
