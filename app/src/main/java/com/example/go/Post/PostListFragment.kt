@@ -8,14 +8,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.go.MainActivity
+import com.example.go.Model.ImagePost
+import com.example.go.Model.TextPost
 import com.example.go.PostViewModel
 import com.example.go.databinding.FragmentPostListBinding
 
 class PostListFragment : Fragment() {
     private lateinit var binding: FragmentPostListBinding
     private val viewModel by activityViewModels<PostViewModel>()
+    private  var myList = arrayListOf<TextPost>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -24,7 +28,11 @@ class PostListFragment : Fragment() {
     ): View {
         binding = FragmentPostListBinding.inflate(inflater, container, false)
 
-        initView()
+        viewModel.textPostLiveData.observe(viewLifecycleOwner, Observer {
+            myList.clear()
+            myList.addAll(it)
+            initView()
+        })
 
         return binding.root
     }
@@ -38,7 +46,7 @@ class PostListFragment : Fragment() {
         binding.postList.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context)
-            adapter = PostAdapter(viewModel) {
+            adapter = PostAdapter(myList) {
                 (activity as MainActivity).changeFragmentWithBackStack(PostFragment.newInstance(it))
             }
         }
