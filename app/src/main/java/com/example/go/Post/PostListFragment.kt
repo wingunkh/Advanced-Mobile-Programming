@@ -39,7 +39,8 @@ class PostListFragment : Fragment() {
             myList.addAll(it)
             initView()
         })
-
+        myList.clear()
+        initView()
         return binding.root
     }
 
