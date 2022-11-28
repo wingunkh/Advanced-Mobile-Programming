@@ -53,7 +53,7 @@ class PostWriteFragment : Fragment() {
             val postDate = FBAuth.getTime()
 
             viewModel.createTextPostItem(newPostKey,TextPost(newPostKey, postUid, postTitle, postUser, postContent, postDate))
-            viewModel.createProfileTextPostItem(postUid, TextPost(postUid, postUid, postTitle, postUser, postContent, postDate))
+            viewModel.createProfileTextPostItem(newPostKey, TextPost(newPostKey, postUid, postTitle, postUser, postContent, postDate))
 
             (activity as MainActivity).removeFragment(this@PostWriteFragment)
             (activity as MainActivity).changeFragmentWithBackStack(ImagePostListFragment.newInstance())
