@@ -28,7 +28,7 @@ class SearchAdapter(private val viewModel: PostViewModel, private val query:Stri
                             itemSearchUsername.visibility=View.GONE
                             noUser.visibility=View.VISIBLE
                         }
-                        FBRef.userRef.child(query).addListenerForSingleValueEvent(object :
+                        FBRef.userRef.child(query).addValueEventListener(object :
                             ValueEventListener {
                             override fun onDataChange(dataSnapshot: DataSnapshot) {
                                 if(query == dataSnapshot.child("uid").value.toString()){

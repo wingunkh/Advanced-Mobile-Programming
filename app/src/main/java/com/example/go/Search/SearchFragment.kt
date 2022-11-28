@@ -56,7 +56,6 @@ class SearchFragment : Fragment(){
                 return true
             }
         })
-
         return binding.root
     }
 
