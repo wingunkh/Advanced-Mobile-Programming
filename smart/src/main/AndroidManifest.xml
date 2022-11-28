@@ -3,6 +3,7 @@
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-feature android:name="android.hardware.type.watch" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
 
     <application
         android:allowBackup="true"
@@ -35,6 +36,10 @@
         <activity
             android:name=".SmartActivity"
             android:exported="true" />
+        <service
+            android:name=".NotificationService"
+            android:enabled="true"
+            android:exported="true"/>
     </application>
 
 </manifest>
