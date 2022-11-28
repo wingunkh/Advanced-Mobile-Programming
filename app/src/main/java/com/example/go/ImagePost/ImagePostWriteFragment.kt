@@ -1,6 +1,5 @@
 package com.example.go.ImagePost
 
-import android.annotation.SuppressLint
 import android.app.Activity.RESULT_CANCELED
 import android.content.Intent
 import android.net.Uri
@@ -18,6 +17,9 @@ import com.example.go.PostViewModel
 import com.example.go.Utils.FBAuth
 import com.example.go.Utils.FBRef
 import com.example.go.databinding.FragmentImagePostWriteBinding
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
 
 
@@ -43,7 +45,14 @@ class ImagePostWriteFragment : Fragment() {
             val newPostKey = FBRef.imagePostRef.child(FBAuth.getUid()).push().key!!
             val postContent = binding.imagePostWriteContent.text.toString()
             val postUid = FBAuth.getUid()
-            val postUser = FBAuth.getDisplayName()
+            var postUser = ""
+            FBRef.userRef.child(postUid).child("displayName").addListenerForSingleValueEvent(object :
+                ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    postUser = dataSnapshot.value.toString()
+                }
+                override fun onCancelled(error: DatabaseError) {}
+            })
             val postDate = FBAuth.getTime()
             val storageReference =
                 FirebaseStorage.getInstance().getReference("images/$postDate")

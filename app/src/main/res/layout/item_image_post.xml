@@ -54,7 +54,7 @@
             android:layout_height="265dp"
             android:contentDescription="image"
             android:scaleType="centerCrop"
-            android:src="@drawable/cake" />
+            android:src="@drawable/sangsang" />
     </androidx.cardview.widget.CardView>
 
 
