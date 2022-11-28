@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.go.PostViewModel
 import com.example.go.R
+import com.example.go.Utils.FBAuth
 import com.example.go.Utils.FBRef
 import com.example.go.databinding.FragmentProfileBinding
 import com.google.firebase.database.DataSnapshot
@@ -58,18 +59,38 @@ class ProfileFragment : Fragment() {
 //                }
             }
 
-        // 프로필 내 프래그먼트 어답터 연결
+        // 프로필 내 프래그먼트 어댑터 연결
         val pageAdapter = ProfileAdapter(childFragmentManager, uid)
         val pager = binding.profileViewPager
         pager.adapter = pageAdapter
         val tab = binding.profileTab
         tab.setupWithViewPager(pager)
 
-        // 이미지 편집 버튼
-//        binding.profileBtn.setOnClickListener {
-//            (activity as MainActivity).changeFragmentWithBackStack(
-//                ProfileEditFragment.newInstance())
-//        }
+        FBRef.userRef.child(FBAuth.getUid()).child("following").child(uid).addValueEventListener(object :
+        ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (uid == snapshot.value.toString()) { //이미 팔로우 중이라면
+                    binding.profileViewPager.visibility = View.VISIBLE //게시글 보임
+                    binding.profileBtn.text = "following" //프로필의 버튼이 "following" 라고 뜸
+                }
+                else { //아직 팔로우 하지 않았다면
+                    binding.profileViewPager.visibility = View.GONE //게시글 안 보임
+                    binding.profileBtn.text = "follow" //프로필의 버튼이 "follow" 라고 뜸
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        }
+        )
+
+        binding.profileBtn.setOnClickListener {
+            if(FBAuth.getUid()!=uid) //나 자신이 아닐 때
+                FBRef.userRef.child(FBAuth.getUid()).child("following").child(uid).setValue(uid) //팔로우
+            if(binding.profileBtn.text=="following") //프로필의 버튼이 "following" 일 때
+                FBRef.userRef.child(FBAuth.getUid()).child("following").child(uid).removeValue() //언팔로우
+        }
 
         return binding.root
     }
