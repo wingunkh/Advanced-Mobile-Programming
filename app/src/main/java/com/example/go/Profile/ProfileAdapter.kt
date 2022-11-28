@@ -14,7 +14,6 @@ class ProfileAdapter(fm: FragmentManager, private val uid: String) : FragmentPag
             1 -> ProfilePostFragment(uid).newInstant()
             else -> ProfileImagePostFragment(uid).newInstant()
         }
-        Log.d("uid from ProfileAdapter : ", uid)
         return fragment
     }
 

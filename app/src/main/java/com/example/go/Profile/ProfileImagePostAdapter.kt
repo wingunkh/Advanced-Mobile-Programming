@@ -23,7 +23,6 @@ class ProfileImagePostAdapter(private val myList: List<ImagePost>) : RecyclerVie
                 if(imagePost.imgUri=="") {
                     itemProfileImagePostImage.setImageResource(R.drawable.user)
                 } else {
-                    Log.d("imgUri ", imagePost.imgUri)
                         Glide.with(itemView.context)
                             .load(imagePost.imgUri)
                             .into(itemProfileImagePostImage)

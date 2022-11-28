@@ -22,7 +22,6 @@ class ImagePostAdapter(private val myList: List<ImagePost>) : RecyclerView.Adapt
                 if(imagePost.imgUri=="") {
                     itemImagePostImage.setImageResource(R.drawable.muhan)
                 } else {
-                    Log.d("imgUri : ", imagePost.imgUri)
 //                    CoroutineScope(Dispatchers.Main).launch {
 //                        Glide.with(itemView.context)
 //                            .load(imagePost.imgUri.toUri())
