@@ -28,7 +28,7 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:scaleType="centerCrop"
-                app:srcCompat="@drawable/ic_baseline_face_24" />
+                app:srcCompat="@drawable/sangsang" />
         </androidx.cardview.widget.CardView>
 
         <TextView
