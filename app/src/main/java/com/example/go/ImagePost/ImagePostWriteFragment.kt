@@ -75,7 +75,6 @@ class ImagePostWriteFragment : Fragment() {
         startActivityForResult(intent, 100)
     }
 
-    @SuppressLint("WrongConstant")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode != RESULT_CANCELED) {
