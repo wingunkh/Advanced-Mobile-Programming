@@ -21,7 +21,6 @@ class ProfilePostAdapter(private val myList: List<TextPost>) : RecyclerView.Adap
                 itemPostTitleText.text = post.title
                 itemPostUsername.text = post.username
                 itemPostDate.text = post.date
-                Log.d("post : ", post.title)
             }
         }
     }

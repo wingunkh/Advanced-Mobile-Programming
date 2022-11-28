@@ -3,11 +3,12 @@ package com.example.go.Post
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.go.Model.ImagePost
 import com.example.go.PostViewModel
 import com.example.go.databinding.ItemPostBinding
 import com.example.go.Model.TextPost
 
-class PostAdapter(private val viewModel: PostViewModel, private val itemClicked: (position: Int) -> Unit) : RecyclerView.Adapter<PostAdapter.PostViewHolder>() {
+class PostAdapter(private val myList: List<TextPost>, private val itemClicked: (position: Int) -> Unit) : RecyclerView.Adapter<PostAdapter.PostViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
         val binding = ItemPostBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -30,10 +31,10 @@ class PostAdapter(private val viewModel: PostViewModel, private val itemClicked:
     }
 
     override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
-        holder.bind(viewModel.textPostLiveData.value!![position])
+        holder.bind(myList[position])
     }
 
-    override fun getItemCount() : Int = viewModel.textPostLiveData.value?.size ?: 0
+    override fun getItemCount() : Int = myList.size
 
 
 }

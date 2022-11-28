@@ -40,7 +40,6 @@ class ProfilePostFragment(private var uid: String) : Fragment() {
         binding.profilePostList.apply {
             viewModel.getProfileTextPostList(uid)
 
-            Log.d("uid from ProfilePostFragment ", uid)
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context)
             adapter = ProfilePostAdapter(myList)
