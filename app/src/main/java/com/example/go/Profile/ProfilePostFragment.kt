@@ -7,13 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.go.MainActivity
-import com.example.go.Post.PostAdapter
-import com.example.go.Post.PostFragment
+import com.example.go.Post.ProfilePostAdapter
 import com.example.go.PostViewModel
 import com.example.go.databinding.FragmentProfilePostBinding
 
-class ProfilePostFragment : Fragment() {
+class ProfilePostFragment(private val uid: String) : Fragment() {
     private lateinit var binding: FragmentProfilePostBinding
     private val viewModel by activityViewModels<PostViewModel>()
 
@@ -33,15 +31,13 @@ class ProfilePostFragment : Fragment() {
         binding.profilePostList.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context)
-            adapter = PostAdapter(viewModel) {
-                (activity as MainActivity).changeFragmentWithBackStack(PostFragment.newInstance(it))
-            }
+            adapter = ProfilePostAdapter(viewModel,uid)
         }
     }
 
     fun newInstant() : ProfilePostFragment {
         val args = Bundle()
-        val frag = ProfilePostFragment()
+        val frag = ProfilePostFragment(uid)
         frag.arguments = args
         return frag
     }

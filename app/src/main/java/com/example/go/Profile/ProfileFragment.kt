@@ -9,19 +9,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import com.bumptech.glide.Glide
-import com.example.go.MainActivity
 import com.example.go.PostViewModel
 import com.example.go.R
-import com.example.go.Utils.FBAuth
 import com.example.go.Utils.FBRef
 import com.example.go.databinding.FragmentProfileBinding
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 private const val UID = "uid"
 
@@ -65,16 +59,17 @@ class ProfileFragment : Fragment() {
             }
 
         // 프로필 내 프래그먼트 어답터 연결
-        val pageAdapter = ProfileAdapter(childFragmentManager)
+        val pageAdapter = ProfileAdapter(childFragmentManager, uid)
         val pager = binding.profileViewPager
         pager.adapter = pageAdapter
         val tab = binding.profileTab
         tab.setupWithViewPager(pager)
 
-        binding.profileBtn.setOnClickListener {
-            (activity as MainActivity).changeFragmentWithBackStack(
-                ProfileEditFragment.newInstance())
-        }
+        // 이미지 편집 버튼
+//        binding.profileBtn.setOnClickListener {
+//            (activity as MainActivity).changeFragmentWithBackStack(
+//                ProfileEditFragment.newInstance())
+//        }
 
         return binding.root
     }

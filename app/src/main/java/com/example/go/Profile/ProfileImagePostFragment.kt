@@ -7,11 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.go.ImagePost.ImagePostAdapter
 import com.example.go.PostViewModel
 import com.example.go.databinding.FragmentProfileImagePostBinding
 
-class ProfileImagePostFragment : Fragment() {
+class ProfileImagePostFragment(private val uid: String) : Fragment() {
     private lateinit var binding: FragmentProfileImagePostBinding
     private val viewModel by activityViewModels<PostViewModel>()
 
@@ -31,13 +30,13 @@ class ProfileImagePostFragment : Fragment() {
         binding.profileImagePostList.apply {
             setHasFixedSize(true)
             layoutManager = GridLayoutManager(context, 3)
-            adapter = ProfileImagePostAdapter(viewModel)
+            adapter = ProfileImagePostAdapter(viewModel, uid)
         }
     }
 
     fun newInstant() : ProfileImagePostFragment {
         val args = Bundle()
-        val frag = ProfileImagePostFragment()
+        val frag = ProfileImagePostFragment(uid)
         frag.arguments = args
         return frag
     }
