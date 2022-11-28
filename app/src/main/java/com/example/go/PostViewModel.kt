@@ -75,6 +75,14 @@ class PostViewModel : ViewModel() {
 
     fun createTextPostItem(newPostKey: String, textPost: TextPost) {
         FBRef.postRef
+            .child(newPostKey).setValue(textPost)
+        textPostList.add(textPost)
+
+        _textPostLiveData.value = textPostList
+    }
+
+    fun createProfileTextPostItem(newPostKey: String, textPost: TextPost) {
+        FBRef.profilepostRef
             .child(FBAuth.getUid()).child(newPostKey).setValue(textPost)
         textPostList.add(textPost)
 
