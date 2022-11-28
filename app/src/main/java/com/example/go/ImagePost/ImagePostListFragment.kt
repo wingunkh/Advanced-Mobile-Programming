@@ -10,9 +10,11 @@ import android.view.ViewGroup
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.go.Follow.FollowFragment
 import com.example.go.MainActivity
+import com.example.go.Model.ImagePost
 import com.example.go.Post.PostListFragment
 import com.example.go.PostViewModel
 import com.example.go.Profile.ProfileFragment
@@ -26,6 +28,7 @@ class ImagePostListFragment : Fragment() {
 
     private lateinit var binding: FragmentImagePostListBinding
     private val viewModel by activityViewModels<PostViewModel>()
+    private  var myList = arrayListOf<ImagePost>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -121,7 +124,11 @@ class ImagePostListFragment : Fragment() {
             }
         }
 
-        initView()
+        viewModel.imagePostLiveData.observe(viewLifecycleOwner, Observer {
+            myList.clear()
+            myList.addAll(it)
+            initView()
+        })
 
         return binding.root
     }
@@ -131,7 +138,7 @@ class ImagePostListFragment : Fragment() {
         binding.imagePostList.apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(requireContext())
-            adapter = ImagePostAdapter(viewModel)
+            adapter = ImagePostAdapter(myList)
         }
     }
 

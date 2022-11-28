@@ -1,19 +1,15 @@
 package com.example.go.Profile
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.go.Model.ImagePost
-import com.example.go.PostViewModel
 import com.example.go.R
 import com.example.go.databinding.ItemProfileImagePostBinding
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
-class ProfileImagePostAdapter(private val viewModel: PostViewModel, private val uid: String) : RecyclerView.Adapter<ProfileImagePostAdapter.ProfileImagePostViewHolder>() {
+class ProfileImagePostAdapter(private val myList: List<ImagePost>) : RecyclerView.Adapter<ProfileImagePostAdapter.ProfileImagePostViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProfileImagePostViewHolder {
         val binding = ItemProfileImagePostBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -27,21 +23,20 @@ class ProfileImagePostAdapter(private val viewModel: PostViewModel, private val 
                 if(imagePost.imgUri=="") {
                     itemProfileImagePostImage.setImageResource(R.drawable.user)
                 } else {
-                    CoroutineScope(Dispatchers.Main).launch {
+                    Log.d("imgUri ", imagePost.imgUri)
                         Glide.with(itemView.context)
-                            .load(imagePost.imgUri.toUri())
+                            .load(imagePost.imgUri)
                             .into(itemProfileImagePostImage)
-                    }
                 }
             }
         }
     }
 
     override fun onBindViewHolder(holder: ProfileImagePostViewHolder, position: Int) {
-        holder.bind(viewModel.imagePostLiveData.value!![position])
+        holder.bind(myList[position])
     }
 
-    override fun getItemCount() : Int = viewModel.imagePostLiveData.value?.size ?: 0
+    override fun getItemCount() : Int = myList.size
 
 
 }
