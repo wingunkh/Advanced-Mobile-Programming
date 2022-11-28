@@ -27,6 +27,7 @@ class PostViewModel : ViewModel() {
     val imagePostLiveData: LiveData<List<ImagePost>> get() = _imagePostLiveData
 
     init {
+        getProfileTextPostList(FBAuth.getUid())
         initTextPostList()
         initImagePostList()
     }
