@@ -18,6 +18,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
+    <TextView
+        android:id="@+id/profileFollowCode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="FollowCode"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profileUserName" />
+
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
@@ -49,7 +59,7 @@
         android:id="@+id/profileBtn"
         android:layout_width="342dp"
         android:layout_height="45dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/rounded_purple_btn"
         android:elevation="10dp"
         android:gravity="center"
@@ -57,7 +67,7 @@
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profileUserName" />
+        app:layout_constraintTop_toBottomOf="@+id/profileFollowCode" />
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/profileTab"
