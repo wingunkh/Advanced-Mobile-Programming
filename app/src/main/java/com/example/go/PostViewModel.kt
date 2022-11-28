@@ -30,6 +30,7 @@ class PostViewModel : ViewModel() {
         getProfileTextPostList(FBAuth.getUid())
         initTextPostList()
         initImagePostList()
+        getUser(FBAuth.getUid())
     }
 
     private fun initTextPostList() {
@@ -118,6 +119,15 @@ class PostViewModel : ViewModel() {
             .child(newPostKey).setValue(imagePost)
         imagePostList.add(imagePost)
         _imagePostLiveData.value = imagePostList
+    }
+
+    fun getUser(uid: String) {
+        FBRef.userRef.child(uid).get().addOnSuccessListener {
+            val userList = it.value
+            Log.d("user : ", "${it.value}")
+        }.addOnFailureListener {
+
+        }
     }
 
     fun deleteTextPostItem(position: Int) {
