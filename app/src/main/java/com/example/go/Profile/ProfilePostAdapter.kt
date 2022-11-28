@@ -22,7 +22,6 @@ class ProfilePostAdapter(private val viewModel: PostViewModel, private val uid: 
                 itemPostTitleText.text = post.title
                 itemPostUsername.text = post.username
                 itemPostDate.text = post.date
-                Log.d("post : ", position.toString())
                 Log.d("post222 : ", post.title)
             }
         }

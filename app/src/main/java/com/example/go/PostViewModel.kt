@@ -56,12 +56,12 @@ class PostViewModel : ViewModel() {
 
     fun getProfileTextPostList(uid: String) {
 
-        FBRef.postRef.child(uid).addValueEventListener(object : ValueEventListener {
+        FBRef.profilepostRef.child(uid).addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                textPostList.clear()
+                profileTextPostList.clear()
                 if(snapshot.exists()) {
                     for (data in snapshot.children) {
-                        Log.d(TAG,"ProfilePost Pid : " + data.value.toString())
+                        Log.d(TAG,"ProfilePost: " + data.value.toString())
                         val getData = data.getValue(TextPost::class.java)
                         profileTextPostList.add(getData!!)
                         profileTextPostList.reverse()
