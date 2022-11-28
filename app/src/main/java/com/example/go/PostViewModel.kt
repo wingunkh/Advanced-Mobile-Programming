@@ -80,6 +80,14 @@ class PostViewModel : ViewModel() {
         _textPostLiveData.value = textPostList
     }
 
+    fun createProfileTextPostItem(newPostKey: String, textPost: TextPost) {
+        FBRef.profilepostRef
+            .child(FBAuth.getUid()).child(newPostKey).setValue(textPost)
+        textPostList.add(textPost)
+
+        _textPostLiveData.value = textPostList
+    }
+
     fun createImagePostItem(newPostKey: String, imagePost: ImagePost) {
         FBRef.imagePostRef
             .child(newPostKey).setValue(imagePost)
@@ -92,6 +100,10 @@ class PostViewModel : ViewModel() {
     }
 
     fun deleteImagePostItem(position: Int) {
+
+    }
+
+    fun deleteUser(uid: String) {
 
     }
 }

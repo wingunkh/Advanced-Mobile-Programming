@@ -11,6 +11,8 @@ object FBRef {
 
         val postRef = database.getReference("post")
 
+        val profilepostRef = database.getReference("profilepost")
+
         val imagePostRef = database.getReference("imagePost")
 
         val userRef = database.getReference("User")
