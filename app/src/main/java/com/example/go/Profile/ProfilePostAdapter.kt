@@ -32,5 +32,4 @@ class ProfilePostAdapter(private val viewModel: PostViewModel) : RecyclerView.Ad
     }
 
     override fun getItemCount() : Int = viewModel.profileTextPostLiveData.value?.size ?: 0
-
 }
