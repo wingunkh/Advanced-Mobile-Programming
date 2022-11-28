@@ -28,7 +28,6 @@ class ProfileEditFragment : Fragment() {
 
     private lateinit var binding: FragmentProfileEditBinding
     private val viewModel by activityViewModels<PostViewModel>()
-    private var ImageUri: Uri = viewModel.getUserImgUri(FBAuth.getUid()).toUri()
 
         override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,15 +36,15 @@ class ProfileEditFragment : Fragment() {
         binding = FragmentProfileEditBinding.inflate(inflater, container, false)
 
         // 프로필 유저 정보 가져오기
-        if(viewModel.getUserImgUri(FBAuth.getUid())=="") {
-            binding.profileEditImage.setImageResource(R.drawable.ic_baseline_face_24)
-        } else {
-            CoroutineScope(Dispatchers.Main).launch {
-                Glide.with(requireContext())
-                    .load(ImageUri)
-                    .into(binding.profileEditImage)
-            }
-        }
+//        if(viewModel.getUserImgUri(FBAuth.getUid())=="") {
+//            binding.profileEditImage.setImageResource(R.drawable.ic_baseline_face_24)
+//        } else {
+//            CoroutineScope(Dispatchers.Main).launch {
+//                Glide.with(requireContext())
+//                    .load(ImageUri)
+//                    .into(binding.profileEditImage)
+//            }
+//        }
         binding.profileEditUsername.setText(FBAuth.getDisplayName())
         binding.profileEditEmail.text = FBAuth.getEmail()
         binding.profileEditPassword.setText("********")
@@ -90,8 +89,8 @@ class ProfileEditFragment : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == 100 && resultCode == Activity.RESULT_OK) {
-            ImageUri = data?.data!!
-            binding.profileEditImage.setImageURI(ImageUri)
+//            ImageUri = data?.data!!
+//            binding.profileEditImage.setImageURI(ImageUri)
         }
     }
 

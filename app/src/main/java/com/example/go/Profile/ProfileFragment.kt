@@ -46,15 +46,11 @@ class ProfileFragment : Fragment() {
 
                 override fun onCancelled(error: DatabaseError) {}
             })
-            if(viewModel.getUserImgUri(uid)=="") {
-                binding.profileUserImage.setImageResource(R.drawable.user)
-            } else {
 //                CoroutineScope(Dispatchers.Main).launch {
 //                    Glide.with(requireContext())
 //                        .load(viewModel.getUser(uid))
 //                        .into(profileUserImage)
 //                }
-            }
 
         // 프로필 내 프래그먼트 어댑터 연결
         val pageAdapter = ProfileAdapter(childFragmentManager, uid)

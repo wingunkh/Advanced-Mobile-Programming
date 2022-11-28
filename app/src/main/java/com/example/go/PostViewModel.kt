@@ -86,46 +86,11 @@ class PostViewModel : ViewModel() {
         _imagePostLiveData.value = imagePostList
     }
 
-    fun getUserImgUri(uid: String): String {
-        var imgUri = ""
-        if (uid != "") {
-            FBRef.userRef.child(uid).child("imgUri").addListenerForSingleValueEvent(object :
-                ValueEventListener {
-                override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    imgUri = dataSnapshot.value.toString()
-                }
-
-                override fun onCancelled(error: DatabaseError) {}
-            })
-        }
-        return imgUri
-    }
-
-    fun getUserDisplayName(uid: String): String {
-        var displayName = ""
-        if (uid != "") {
-            FBRef.userRef.child(uid).child("displayName").addListenerForSingleValueEvent(object :
-                ValueEventListener {
-                override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    displayName = dataSnapshot.value.toString()
-                }
-
-                override fun onCancelled(error: DatabaseError) {}
-            })
-        }
-        return displayName
-    }
-
-
     fun deleteTextPostItem(position: Int) {
 
     }
 
     fun deleteImagePostItem(position: Int) {
-
-    }
-
-    fun deleteUser(uid: String) {
 
     }
 }
