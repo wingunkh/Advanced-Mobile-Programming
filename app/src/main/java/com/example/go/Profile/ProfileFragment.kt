@@ -2,16 +2,12 @@
 
 package com.example.go.Profile
 
-import android.opengl.Visibility
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import com.bumptech.glide.Glide
-import com.example.go.MainActivity
 import com.example.go.PostViewModel
 import com.example.go.R
 import com.example.go.Utils.FBAuth
@@ -20,9 +16,6 @@ import com.example.go.databinding.FragmentProfileBinding
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 private const val UID = "uid"
 
@@ -53,8 +46,6 @@ class ProfileFragment : Fragment() {
 
                 override fun onCancelled(error: DatabaseError) {}
             })
-            Log.d("displayName is ", binding.profileUserName.text.toString())
-            Log.d("displayName is ", viewModel.getUserDisplayName(uid))
             if(viewModel.getUserImgUri(uid)=="") {
                 binding.profileUserImage.setImageResource(R.drawable.user)
             } else {
@@ -66,7 +57,7 @@ class ProfileFragment : Fragment() {
             }
 
         // 프로필 내 프래그먼트 어댑터 연결
-        val pageAdapter = ProfileAdapter(childFragmentManager)
+        val pageAdapter = ProfileAdapter(childFragmentManager, uid)
         val pager = binding.profileViewPager
         pager.adapter = pageAdapter
         val tab = binding.profileTab
@@ -83,13 +74,8 @@ class ProfileFragment : Fragment() {
                     binding.profileViewPager.visibility = View.GONE //게시글 안 보임
                     binding.profileBtn.text = "follow" //프로필의 버튼이 "follow" 라고 뜸
                 }
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-
-            }
-        }
-        )
+            } override fun onCancelled(error: DatabaseError) {}
+        })
 
         binding.profileBtn.setOnClickListener {
             if(FBAuth.getUid()!=uid) //나 자신이 아닐 때

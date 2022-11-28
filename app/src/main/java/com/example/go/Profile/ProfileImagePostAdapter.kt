@@ -13,7 +13,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class ProfileImagePostAdapter(private val viewModel: PostViewModel) : RecyclerView.Adapter<ProfileImagePostAdapter.ProfileImagePostViewHolder>() {
+class ProfileImagePostAdapter(private val viewModel: PostViewModel, private val uid: String) : RecyclerView.Adapter<ProfileImagePostAdapter.ProfileImagePostViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProfileImagePostViewHolder {
         val binding = ItemProfileImagePostBinding.inflate(LayoutInflater.from(parent.context), parent, false)

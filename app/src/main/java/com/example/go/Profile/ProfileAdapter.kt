@@ -1,18 +1,20 @@
 package com.example.go.Profile
 
+import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 
 
-class ProfileAdapter(fm : FragmentManager) : FragmentPagerAdapter(fm) {
+class ProfileAdapter(fm: FragmentManager, private val uid: String) : FragmentPagerAdapter(fm) {
     override fun getItem(position: Int): Fragment {
         val fragment = when(position)
         {
-            0 -> ProfileImagePostFragment().newInstant()
-            1 -> ProfilePostFragment().newInstant()
-            else -> ProfileImagePostFragment().newInstant()
+            0 -> ProfileImagePostFragment(uid).newInstant()
+            1 -> ProfilePostFragment(uid).newInstant()
+            else -> ProfileImagePostFragment(uid).newInstant()
         }
+        Log.d("uid from ProfileAdapter : ", uid)
         return fragment
     }
 
