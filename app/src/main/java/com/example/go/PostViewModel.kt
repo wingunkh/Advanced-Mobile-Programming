@@ -72,6 +72,7 @@ class PostViewModel : ViewModel() {
         FBRef.imagePostRef.addValueEventListener(postListener)
     }
 
+
     fun createTextPostItem(newPostKey: String, textPost: TextPost) {
         FBRef.postRef
             .child(FBAuth.getUid()).child(newPostKey).setValue(textPost)
