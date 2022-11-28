@@ -55,7 +55,6 @@ class PostViewModel : ViewModel() {
     }
 
     fun getProfileTextPostList(uid: String) {
-
         FBRef.profilepostRef.child(uid).addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 profileTextPostList.clear()

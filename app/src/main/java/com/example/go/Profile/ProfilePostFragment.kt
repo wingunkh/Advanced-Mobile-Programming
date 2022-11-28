@@ -12,7 +12,7 @@ import com.example.go.Post.ProfilePostAdapter
 import com.example.go.PostViewModel
 import com.example.go.databinding.FragmentProfilePostBinding
 
-class ProfilePostFragment(private val uid: String) : Fragment() {
+class ProfilePostFragment(private var uid: String) : Fragment() {
     private lateinit var binding: FragmentProfilePostBinding
     private val viewModel by activityViewModels<PostViewModel>()
 
@@ -28,7 +28,6 @@ class ProfilePostFragment(private val uid: String) : Fragment() {
     }
 
     private fun initView() {
-
         binding.profilePostList.apply {
             viewModel.getProfileTextPostList(uid)
 
