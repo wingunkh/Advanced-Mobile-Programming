@@ -59,12 +59,14 @@ class ImagePostWriteFragment : Fragment() {
 
             storageReference.putFile(ImageUri).addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    viewModel.createImagePostItem(
-                        newPostKey, ImagePost(
-                            newPostKey, postUid, ImageUri.toString(),
-                            postUser, postContent, postDate
+                    task.result.metadata?.reference?.downloadUrl?.addOnSuccessListener {
+                        viewModel.createImagePostItem(
+                            newPostKey, ImagePost(
+                                newPostKey, postUid, it.toString(),
+                                postUser, postContent, postDate
+                            )
                         )
-                    )
+                    }
                     (activity as MainActivity).removeFragment(this@ImagePostWriteFragment)
                     Log.d("check", ImageUri.toString())
                 }

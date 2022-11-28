@@ -3,7 +3,9 @@ package com.example.go.ImagePost
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.go.databinding.ItemImagePostBinding
 import com.example.go.Model.ImagePost
 import com.example.go.R
@@ -22,11 +24,9 @@ class ImagePostAdapter(private val myList: List<ImagePost>) : RecyclerView.Adapt
                 if(imagePost.imgUri=="") {
                     itemImagePostImage.setImageResource(R.drawable.muhan)
                 } else {
-//                    CoroutineScope(Dispatchers.Main).launch {
-//                        Glide.with(itemView.context)
-//                            .load(imagePost.imgUri.toUri())
-//                            .into(itemImagePostImage)
-//                    }
+                        Glide.with(itemView.context)
+                            .load(imagePost.imgUri)
+                            .into(itemImagePostImage)
                 }
                 itemImagePostUsername.text = imagePost.username
                 itemImagePostContent.text = imagePost.content
