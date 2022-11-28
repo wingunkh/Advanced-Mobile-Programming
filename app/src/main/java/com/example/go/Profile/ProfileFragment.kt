@@ -46,6 +46,11 @@ class ProfileFragment : Fragment() {
 
                 override fun onCancelled(error: DatabaseError) {}
             })
+        binding.profileFollowCode.apply {
+            text = uid
+            if(FBAuth.getUid() != uid)
+                visibility = View.GONE
+        }
 //                CoroutineScope(Dispatchers.Main).launch {
 //                    Glide.with(requireContext())
 //                        .load(viewModel.getUser(uid))
