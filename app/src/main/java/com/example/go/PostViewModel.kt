@@ -18,6 +18,10 @@ class PostViewModel : ViewModel() {
     private val _textPostLiveData = MutableLiveData<List<TextPost>>()
     val textPostLiveData: LiveData<List<TextPost>> get() = _textPostLiveData
 
+    private val profileTextPostList = mutableListOf<TextPost>()
+    private val _profileTextPostLiveData = MutableLiveData<List<TextPost>>()
+    val profileTextPostLiveData: LiveData<List<TextPost>> get() = _profileTextPostLiveData
+
     private val imagePostList = mutableListOf<ImagePost>()
     private val _imagePostLiveData = MutableLiveData<List<ImagePost>>()
     val imagePostLiveData: LiveData<List<ImagePost>> get() = _imagePostLiveData
@@ -48,6 +52,27 @@ class PostViewModel : ViewModel() {
         }
 
         FBRef.postRef.addValueEventListener(postListener)
+    }
+
+    fun getProfileTextPostList(uid: String) {
+
+        FBRef.postRef.child(uid).addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                textPostList.clear()
+                if(snapshot.exists()) {
+                    for (data in snapshot.children) {
+                        Log.d(TAG,"ProfilePost Pid : " + data.value.toString())
+                        val getData = data.getValue(TextPost::class.java)
+                        profileTextPostList.add(getData!!)
+                        profileTextPostList.reverse()
+                        _profileTextPostLiveData.value = profileTextPostList
+                    }
+                }
+            }
+            override fun onCancelled(error: DatabaseError) {
+                Log.w(TAG, "loadPost:onCancelled", error.toException())
+            }
+        })
     }
 
     private fun initImagePostList() {

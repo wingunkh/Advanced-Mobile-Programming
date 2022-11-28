@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import com.example.go.ImagePost.ImagePostListFragment
 import com.example.go.MainActivity
 import com.example.go.PostViewModel
 import com.example.go.databinding.FragmentPostWriteBinding
@@ -55,7 +56,7 @@ class PostWriteFragment : Fragment() {
             viewModel.createProfileTextPostItem(postUid, TextPost(postUid, postUid, postTitle, postUser, postContent, postDate))
 
             (activity as MainActivity).removeFragment(this@PostWriteFragment)
-            (activity as MainActivity).changeFragmentWithBackStack(PostListFragment.newInstance())
+            (activity as MainActivity).changeFragmentWithBackStack(ImagePostListFragment.newInstance())
         }
         return binding.root
     }

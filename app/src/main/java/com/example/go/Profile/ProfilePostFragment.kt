@@ -30,6 +30,7 @@ class ProfilePostFragment(private val uid: String) : Fragment() {
     private fun initView() {
 
         binding.profilePostList.apply {
+            viewModel.getProfileTextPostList(uid)
             Log.d("uid from ProfilePostFragment ", uid)
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(context)
