@@ -45,9 +45,6 @@ class ImagePostAdapter(private val viewModel: PostViewModel) : RecyclerView.Adap
                 }
                 itemImagePostUsername.text = imagePost.username
                 itemImagePostContent.text = imagePost.content
-//                itemImagePostFavoriteBtn.setOnClickListener() {
-//                    FBRef.userRef.child(FBAuth.getUid()).child("favorite").child(imagePost.pid).setValue(imagePost)
-//                }
             }
         }
     }
