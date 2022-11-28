@@ -61,7 +61,7 @@ class PostViewModel : ViewModel() {
                 profileTextPostList.clear()
                 if(snapshot.exists()) {
                     for (data in snapshot.children) {
-                        Log.d(TAG,"ProfilePost Pid : " + data.value.toString())
+                        Log.d(TAG,"ProfilePost: " + data.value.toString())
                         val getData = data.getValue(TextPost::class.java)
                         profileTextPostList.add(getData!!)
                         profileTextPostList.reverse()
