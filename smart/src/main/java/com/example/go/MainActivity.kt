@@ -1,6 +1,7 @@
 package com.example.go
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -36,7 +37,7 @@ class MainActivity : Activity() {
         Firebase.auth.signInWithEmailAndPassword(userEmail, password)
             .addOnCompleteListener(this) {
                 if (it.isSuccessful) { //로그인 성공 시
-                    //startActivity(Intent(this, MainActivity::class.java)) //게시글 리스트 액티비티 시작
+                    startActivity(Intent(this, SmartActivity::class.java)) //게시글 리스트 액티비티 시작
                     setDisplayName()
                     Log.d("user", getDisplayName())
                     finish()
