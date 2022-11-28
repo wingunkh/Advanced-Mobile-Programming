@@ -43,7 +43,6 @@ class PostWriteFragment : Fragment() {
         }
 
         binding.postWritingPostButton.setOnClickListener {
-
             val newPostKey = FBRef.postRef.child(FBAuth.getUid()).push().key!!
             val postTitle = binding.postWritingTitle.text.toString()
             val postContent = binding.postWritingContent.text.toString()
