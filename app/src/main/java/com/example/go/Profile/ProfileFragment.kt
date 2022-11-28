@@ -3,7 +3,6 @@
 package com.example.go.Profile
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -47,8 +46,6 @@ class ProfileFragment : Fragment() {
 
                 override fun onCancelled(error: DatabaseError) {}
             })
-            Log.d("displayName is ", binding.profileUserName.text.toString())
-            Log.d("displayName is ", viewModel.getUserDisplayName(uid))
             if(viewModel.getUserImgUri(uid)=="") {
                 binding.profileUserImage.setImageResource(R.drawable.user)
             } else {
@@ -77,13 +74,8 @@ class ProfileFragment : Fragment() {
                     binding.profileViewPager.visibility = View.GONE //게시글 안 보임
                     binding.profileBtn.text = "follow" //프로필의 버튼이 "follow" 라고 뜸
                 }
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-
-            }
-        }
-        )
+            } override fun onCancelled(error: DatabaseError) {}
+        })
 
         binding.profileBtn.setOnClickListener {
             if(FBAuth.getUid()!=uid) //나 자신이 아닐 때

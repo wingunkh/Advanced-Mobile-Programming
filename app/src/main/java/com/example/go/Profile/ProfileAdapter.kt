@@ -1,5 +1,6 @@
 package com.example.go.Profile
 
+import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
@@ -13,6 +14,7 @@ class ProfileAdapter(fm: FragmentManager, private val uid: String) : FragmentPag
             1 -> ProfilePostFragment(uid).newInstant()
             else -> ProfileImagePostFragment(uid).newInstant()
         }
+        Log.d("uid from ProfileAdapter : ", uid)
         return fragment
     }
 
